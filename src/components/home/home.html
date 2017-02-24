@@ -1,0 +1,41 @@
+<div class="home-page">
+
+    <div class="form-content">
+
+        <div layout="row" layout-align="center">
+            <div flex-xs flex-gt-xs="50" layout="column">
+
+                <md-card>
+
+                    <div layout="row" layout-align="center">
+                        <img src="../../images/competition_logo.png" flex-sm flex-gt-sm="40" class="img-responsive"
+                             alt="Washed Out"/>
+                    </div>
+                    <md-card-content>
+                        <form data-ng-submit="vm.handleSubmit()">
+                            <md-input-container class="md-block">
+                                <label>FULL NAME</label>
+                                <input ng-model="vm.title" type="text">
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <label>COMPANY EMAIL ADDRESS</label>
+                                <input ng-model="vm.email" type="email">
+                            </md-input-container>
+                            <div layout="row" layout-align="center">
+                                <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
+                                    ENTER
+                                </md-button>
+                            </div>
+                        </form>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center">
+
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+
+    </div>
+</div>
+
