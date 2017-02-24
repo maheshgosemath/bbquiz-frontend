@@ -25,18 +25,16 @@
                 template: '<tmpl-introduction></tmpl-introduction>'
             })
 
-           .state('question1', {
-            url: '/question1',
-            template: '<tmpl-question1></tmpl-question1>'
-        })
+            .state('question1', {
+                url: '/question1',
+                template: '<tmpl-question1></tmpl-question1>'
+            })
 
 
-          .state('finalScreen', {
-            url: '/finalScreen',
-            template: '<tmpl-finalScreen></tmpl-finalScreen>'
-        });
-
-
+            .state('finalScreen', {
+                url: '/finalScreen',
+                template: '<tmpl-final-screen></tmpl-final-screen>'
+            });
 
 
     }

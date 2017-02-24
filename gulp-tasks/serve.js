@@ -46,7 +46,7 @@ module.exports = function (config) {
                     '/.tmp': config.tempDir
                 } : {},
                 middleware: [
-                    apiserver
+                    modRewrite([ '!\\.\\w+$ /index.html [L]' ]), apiserver
                 ]
             },
             ghostMode: {
@@ -60,8 +60,7 @@ module.exports = function (config) {
             logLevel: 'info',
             logPrefix: 'angular-patterns',
             notify: true,
-            open: false,
-            startPath: '/'
+            open: false
         };
 
         browserSync(options);
