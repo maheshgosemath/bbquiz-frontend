@@ -28,7 +28,15 @@
            .state('question1', {
             url: '/question1',
             template: '<tmpl-question1></tmpl-question1>'
+        })
+
+
+          .state('finalScreen', {
+            url: '/finalScreen',
+            template: '<tmpl-finalScreen></tmpl-finalScreen>'
         });
+
+
 
 
     }

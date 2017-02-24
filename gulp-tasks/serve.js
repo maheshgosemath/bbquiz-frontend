@@ -4,7 +4,7 @@ var browserSync = require('browser-sync');
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 var modRewrite = require('connect-modrewrite');
-
+var proxyMiddleware = require('http-proxy-middleware');
 module.exports = function (config) {
 
     gulp.task('serve-dev', ['inject'], function () {
@@ -28,6 +28,12 @@ module.exports = function (config) {
         } else {
             watch(files, function() { gulp.start('optimize', browserSync.reload); });
         }
+        var apiserver = proxyMiddleware('/rest', {
+            //target: 'http://edufiler-uniquemedia.rhcloud.com/',
+            target: 'http://bbq.theuniquemedia.in',
+            changeOrigin: true,             // for vhosted sites, changes host header to match to target's host
+            logLevel: 'debug'
+        });
 
         var options = {
             server: {
@@ -40,7 +46,7 @@ module.exports = function (config) {
                     '/.tmp': config.tempDir
                 } : {},
                 middleware: [
-                    modRewrite([ '!\\.\\w+$ /index.html [L]' ])
+                    apiserver
                 ]
             },
             ghostMode: {
@@ -54,7 +60,8 @@ module.exports = function (config) {
             logLevel: 'info',
             logPrefix: 'angular-patterns',
             notify: true,
-            open: false
+            open: false,
+            startPath: '/'
         };
 
         browserSync(options);

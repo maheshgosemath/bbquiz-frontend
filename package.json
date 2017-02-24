@@ -61,6 +61,7 @@
     "gulp-useref": "^1.2.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.2.4",
+    "http-proxy-middleware": "^0.17.3",
     "jshint-stylish": "^2.0.1",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",

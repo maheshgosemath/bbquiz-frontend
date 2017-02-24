@@ -27,10 +27,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state'];
+    ControllerFunction.$inject = ['$state', 'HttpService'];
 
     /* @ngInject */
-    function ControllerFunction($state) {
+    function ControllerFunction($state, HttpService) {
 
         var vm = this;
         vm.title = "";
@@ -42,7 +42,10 @@
         function handleSubmit() {
             $state.transitionTo("introduction");
         }
-
+        var httpObj = new HttpService("question");
+        httpObj.get("/list").then(function(jsonResp){
+            console.info(jsonResp);
+        })
     }
 
 })();

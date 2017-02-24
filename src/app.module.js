@@ -10,7 +10,8 @@
         'app.home',
         'app.toolbar',
         'app.introduction',
-        'app.question1'
+        'app.question1',
+        'app.finalScreen'
 
     ]);
 })();
