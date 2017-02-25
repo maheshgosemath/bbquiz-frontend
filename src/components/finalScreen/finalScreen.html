@@ -1,0 +1,57 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <div class="md-display-1" layout="row" layout-align="center">
+                SANDEEP PADHI
+            </div>
+            <div class="md-headline" layout="row" layout-align="center">
+                <h3>YOUR SCORE</h3>
+            </div>
+            <div class="md-display-3" layout="row" layout-align="center">
+                6
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+
+
+    <md-card-content layout="row" layout-align="center">
+        <div>
+            <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
+                <div layout="row" layout-align="center">
+                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="/blank"
+                               aria-label="Use Android">
+                        <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
+                        Share
+                    </md-button>
+
+                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="/blank"
+                               aria-label="Use Android">
+                        <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
+                        Like
+                    </md-button>
+                </div>
+                <md-list ng-cloak="" class="listdemoListControls">
+                    <md-subheader class="md-no-sticky"><b>YOR RESPONSES</b></md-subheader>
+                    <md-list-item ng-repeat="topping in vm.toppings">
+                        <p><label>{{vm.optionLabels[$index]}}</label> {{ topping.name }} </p>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+
+
+            <div layout="row" layout-align="center">
+                <h3>Participate in WinKindle's New Competition</h3>
+            </div>
+
+
+            <div layout="row" layout-align="center">
+                <md-button ng-click="vm.newQuiz()" class="md-raised md-primary" aria-label="Use Android">
+                    PARTICIPATE
+                </md-button>
+            </div>
+        </div>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="center">
+
+    </md-card-actions>
+</md-card>

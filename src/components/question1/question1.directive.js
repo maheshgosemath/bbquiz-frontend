@@ -1,33 +1,32 @@
 (function () {
 
-    'use strict';
+        'use strict';
 
-    angular.module('app.question1')
-        .directive('tmplQuestion1', directiveFunction)
-        .controller('Question1Controller', ControllerFunction);
+        angular.module('app.question1')
+            .directive('tmplQuestion1', directiveFunction)
+            .controller('Question1Controller', ControllerFunction);
 
 
-    // ----- directiveFunction -----
-    directiveFunction.$inject = [];
+        // ----- directiveFunction -----
+        directiveFunction.$inject = [];
 
-    /* @ngInject */
-    function directiveFunction() {
+        /* @ngInject */
+        function directiveFunction() {
 
-        var directive = {
-            restrict: 'E',
-            templateUrl: 'components/question1/question1.html',
-            scope: {
-            },
-            controller: 'Question1Controller',
-            controllerAs: 'vm'
-        };
+            var directive = {
+                restrict: 'E',
+                templateUrl: 'components/question1/question1.html',
+                scope: {},
+                controller: 'Question1Controller',
+                controllerAs: 'vm'
+            };
 
-        return directive;
-    }
+            return directive;
+        }
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService'];
+    ControllerFunction.$inject = ['$state'];
 
     /* @ngInject */
     var vm, pointer, quizList;
@@ -59,6 +58,10 @@
             } else {
                 alert("Submit quiz!!!");
             }
+        }
+
+        vm.endQuiz = function() {
+            $state.transitionTo('finalScreen');
         }
     }
 

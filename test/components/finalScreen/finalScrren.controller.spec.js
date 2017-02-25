@@ -10,11 +10,11 @@ describe('FinalScreen', function() {
     });
 
     beforeEach(function() {
-        controller = $controller('FinalScrrenController');
+        controller = $controller('FinalScreenController');
         $rootScope.$apply();
     });
 
-    describe('FinalScren controller', function() {
+    describe('FinalScreen controller', function() {
         it('dummy test', function() {
         });
     });
