@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('app.home')
+    angular.module('app.home',['ngCookies'])
         .directive('tmplHome', directiveFunction)
         .controller('HomeController', ControllerFunction);
 
@@ -27,10 +27,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', 'quizListService', 'compService', 'userService'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, QuizListService, CompService, UserService) {
+    function ControllerFunction($state, HttpService, $cookies) {
 
         var vm = this;
         vm.handleSubmit = handleSubmit;
@@ -42,11 +42,11 @@
             var obj = new Object();
             obj.companySeq = response.companySeq;
             obj.competitionSeq = response.competitionSeq;
-            CompService.addComp(obj);
+            $cookies.put('compinfo', obj);
         });
 
         function handleSubmit() {
-            var obj = CompService.getComp();
+            var obj = $cookies.get('compinfo');
             var data = {
                 name: vm.title,
                 email: vm.email,
@@ -57,7 +57,11 @@
             httpObj.post("register", data).then(function(jsonResp){
                 if(jsonResp.timeLeft > 0) {
                     if(jsonResp.quizVOList.length > 0) {
-                        QuizListService.addList(jsonResp.quizVOList);
+                        var obj = new Object();
+                        obj.name=vm.title;
+                        obj.email=vm.email;
+                        obj.quizList = jsonResp.quizVOList;
+                        $cookies.put('userinfo', obj);
                         $state.transitionTo("introduction");
                     } else {
                         alert('No questions found');

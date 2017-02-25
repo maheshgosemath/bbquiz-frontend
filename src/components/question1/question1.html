@@ -18,11 +18,12 @@
         <md-list ng-cloak="" class="listdemoListControls">
 
             <md-subheader class="md-no-sticky">Please select one answer</md-subheader>
-            <md-list-item ng-repeat="label in vm.options">
-                <p><label>{{vm.optionLabels[$index]}}.</label> {{ label.name }} </p>
-                <md-checkbox class="md-secondary" ng-model="label.wanted"></md-checkbox>
-            </md-list-item>
-
+                <md-radio-group ng-model="vm.optionSeq">
+                    <md-list-item ng-repeat="label in vm.options">
+                        <p><label>{{vm.optionLabels[$index]}}.</label> {{ label.name }} </p>
+                        <md-radio-button class="md-secondary" value="{{label.seq}}" aria-label="{{ label.name }}"></md-radio-button>
+                    </md-list-item>
+            </md-radio-group>
         </md-list>
 
 

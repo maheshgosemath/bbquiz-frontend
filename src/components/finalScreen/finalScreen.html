@@ -2,13 +2,13 @@
     <md-card-title>
         <md-card-title-text>
             <div class="md-display-1" layout="row" layout-align="center">
-                SANDEEP PADHI
+                {{ vm.name }}
             </div>
             <div class="md-headline" layout="row" layout-align="center">
                 <h3>YOUR SCORE</h3>
             </div>
             <div class="md-display-3" layout="row" layout-align="center">
-                6
+                {{ vm.score }}
             </div>
         </md-card-title-text>
     </md-card-title>
@@ -30,12 +30,12 @@
                         Like
                     </md-button>
                 </div>
-                <md-list ng-cloak="" class="listdemoListControls">
+                <!--<md-list ng-cloak="" class="listdemoListControls">
                     <md-subheader class="md-no-sticky"><b>YOR RESPONSES</b></md-subheader>
                     <md-list-item ng-repeat="topping in vm.toppings">
                         <p><label>{{vm.optionLabels[$index]}}</label> {{ topping.name }} </p>
                     </md-list-item>
-                </md-list>
+                </md-list>-->
             </md-content>
 
 
