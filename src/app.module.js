@@ -13,23 +13,41 @@
         'app.question1',
         'app.finalScreen'
 
-    ]);
-
-
-    app.service('quizListService', function() {
+    ]).factory('quizListService', function() {
         var myList = [];
-
         var addList = function (newObj) {
             myList.push(newObj);
         }
-
         var getList = function () {
             return myList;
         }
-
         return {
             addList: addList,
             getList: getList
+        }
+    }).factory("compService", function() {
+        var userObj;
+        var addCompetition = function (newObj) {
+            userObj = newObj;
+        };
+        var getCompetition = function () {
+            return userObj;
+        };
+        return {
+            addComp: addCompetition,
+            getComp: getCompetition
+        }
+    }).factory('userService', function() {
+        var username;
+        var addUsername = function(newUsername) {
+            username = newUsername;
+        }
+        var getUsername = function() {
+            return username;
+        }
+        return {
+            addUsername: addUsername,
+            getUsername: getUsername
         }
     });
 })();

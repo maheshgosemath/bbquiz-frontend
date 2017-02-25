@@ -26,7 +26,7 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state'];
+    ControllerFunction.$inject = ['$state', 'HttpService'];
 
     /* @ngInject */
     var vm, pointer, quizList;
@@ -50,11 +50,13 @@
             quizList = jsonResp.quizVOList;
             vm.length = quizList.length;
             paintQuestion(vm,quizList,pointer);
+            pointer = pointer + 1;
         });
 
         vm.nextQuiz = function() {
             if(pointer < quizList.length) {
-                paintQuestion(vm, quizList, ++pointer);
+                paintQuestion(vm, quizList, pointer);
+                pointer = pointer + 1;
             } else {
                 alert("Submit quiz!!!");
             }

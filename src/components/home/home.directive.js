@@ -27,42 +27,44 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService'];
+    ControllerFunction.$inject = ['$state', 'HttpService', 'quizListService', 'compService', 'userService'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService) {
+    function ControllerFunction($state, HttpService, QuizListService, CompService, UserService) {
 
         var vm = this;
-        vm.title = "";
-        vm.email = "";
-
         vm.handleSubmit = handleSubmit;
+        $state.username='';
 
         var httpObj = new HttpService("brainbout");
-        var companySeq, competitionSeq, competitionStatus, timeLimit;
 
-        var data =  {
-            "ref": "abcdefgh"
-        }
-        httpObj.get("login", data).then(function(response) {
-            companySeq = response.companySeq;
-            competitionSeq = response.competitionSeq;
-            competitionStatus = response.competitionStatus;
-            timeLimit = response.timeLimit;
+        httpObj.get("login", {ref:"abcdefgh"}).then(function(response) {
+            var obj = new Object();
+            obj.companySeq = response.companySeq;
+            obj.competitionSeq = response.competitionSeq;
+            CompService.addComp(obj);
         });
 
         function handleSubmit() {
-            $state.transitionTo("introduction");
-
+            var obj = CompService.getComp();
             var data = {
                 name: vm.title,
                 email: vm.email,
-                companySeq: companySeq,
-                competitionSeq: competitionSeq
-            }
+                companySeq: obj.companySeq,
+                competitionSeq: obj.competitionSeq
+            };
 
             httpObj.post("register", data).then(function(jsonResp){
-
+                if(jsonResp.timeLeft > 0) {
+                    if(jsonResp.quizVOList.length > 0) {
+                        QuizListService.addList(jsonResp.quizVOList);
+                        $state.transitionTo("introduction");
+                    } else {
+                        alert('No questions found');
+                    }
+                } else {
+                    alert('Your quiz time is over');
+                }
             });
         }
     }
