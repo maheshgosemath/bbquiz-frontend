@@ -14,7 +14,8 @@
   ],
   "devDependencies": {
     "angular-mocks": "~1.5.0",
-    "bardjs": "~0.1.8"
+    "bardjs": "~0.1.8",
+    "angular-cookies": "~1.5.0"
   },
   "dependencies": {
     "angular": "~1.5.0",

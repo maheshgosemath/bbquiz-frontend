@@ -28,9 +28,9 @@ module.exports = function (config) {
         } else {
             watch(files, function() { gulp.start('optimize', browserSync.reload); });
         }
-        var apiserver = proxyMiddleware('/rest', {
+        var apiserver = proxyMiddleware('/brainbout', {
             //target: 'http://edufiler-uniquemedia.rhcloud.com/',
-            target: 'http://bbq.theuniquemedia.in',
+            target: 'http://brainbout.theuniquemedia.in',
             changeOrigin: true,             // for vhosted sites, changes host header to match to target's host
             logLevel: 'debug'
         });

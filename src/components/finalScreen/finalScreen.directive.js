@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('app.finalScreen')
+    angular.module('app.finalScreen', ['ngCookies'])
         .directive('tmplFinalScreen', directiveFunction)
         .controller('FinalScreenController', ControllerFunction);
 
@@ -26,18 +26,16 @@
         return directive;
     }
 
-    ControllerFunction.$inject = ['$state'];
+    ControllerFunction.$inject = ['$state', '$cookieStore'];
 
     /* @ngInject */
-    function ControllerFunction($state) {
+    function ControllerFunction($state, $cookieStore) {
         var vm = this;
 
-        vm.toppings = [
-            { name: 'From which districts in Gujrat does  McCain source potatoes for McDonalds'},
-            { name: 'Which Rajiv Gandhi Khel Ratna awardee would be fit in this set of pictures'},
-            { name: 'What is the maximum sugar content in McDolands burger buns in India' },
-            { name: 'Ronald Mc Donald has been given what designation since August 2003 by the Mc Donalds Corporation' }
-        ];
+        var obj = $cookieStore.get('submissionResult');
+        var userObj = $cookieStore.get('userinfo');
+        vm.score = obj.score;
+        vm.name = userObj.name;
 
         var vm = this;
         vm.newQuiz = function(){

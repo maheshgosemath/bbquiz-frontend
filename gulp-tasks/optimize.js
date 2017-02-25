@@ -13,7 +13,7 @@ module.exports = function (config) {
         del(config.tempDir);
     });
 
-    gulp.task('optimize', [ 'inject', 'test' ], function () {
+    gulp.task('optimize', [ 'inject'], function () {
         log('Optimizing the js, css, and html');
 
         var assets = $.useref.assets({ searchPath: './' });

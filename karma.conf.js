@@ -21,6 +21,7 @@ module.exports = function (config) {
                 'bower_components/angular-sanitize/angular-sanitize.js',
                 'bower_components/angular-ui-router/release/angular-ui-router.js',
                 'bower_components/angular-mocks/angular-mocks.js',
+                'bower_components/angular-cookies/angular-cookies.js',
                 'bower_components/bardjs/dist/bard.js',
                 'bower_components/lodash/lodash.js',
 
@@ -35,7 +36,7 @@ module.exports = function (config) {
             exclude: [],
 
             proxies: {
-                '/': 'http://localhost:8888/'
+                /* '/': 'http://localhost:8888/' */
             },
 
             // preprocess matching files before serving them to the browser

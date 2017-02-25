@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('app.introduction')
+    angular.module('app.introduction', ['ngCookies'])
         .directive('tmplIntroduction', directiveFunction)
         .controller('IntroductionController', ControllerFunction);
 
@@ -27,14 +27,28 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore'];
 
     /* @ngInject */
-    function ControllerFunction($state) {
+    function ControllerFunction($state, HttpService, $cookieStore) {
 
         var vm = this;
         vm.startQuiz = function(){
-            $state.transitionTo('question1');
+            var httpObj = new HttpService("brainbout");
+
+            var obj = $cookieStore.get('compinfo');
+            var userObj = $cookieStore.get('userinfo');
+            var data = {
+                email: userObj.email,
+                competitionSeq: obj.competitionSeq
+            }
+            httpObj.post("start", data).then(function(response) {
+                if(response.status === 'success') {
+                    $state.transitionTo('question1');
+                } else {
+                    alert('Something went wrong');
+                }
+            });
         };
     }
 
