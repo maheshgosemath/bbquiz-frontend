@@ -27,19 +27,58 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state'];
+    ControllerFunction.$inject = ['$state', 'HttpService'];
 
     /* @ngInject */
-    function ControllerFunction($state) {
+    var vm, pointer, quizList;
+    function ControllerFunction($state, HttpService) {
         var vm = this;
-        vm.optionLabels = ["A", "B", "C", "D", "E","F"];
-        vm.toppings = [
-            { name: 'Deesa and Kheda', wanted: false },
-            { name: 'Junagadh', wanted: false },
-            { name: 'Rajkot', wanted: false },
-            { name: 'Surat', wanted: false }
-        ];
+        vm.length = 10;
+        vm.index = 1;
+        vm.buttonLabel = "NEXT"
+        var pointer = 0;
+        var quizList;
 
+        var data = {
+            name: 'test',
+            email: 'maheshgosemath@gmail.com',
+            companySeq: 1,
+            competitionSeq: 1
+        };
+
+        var httpObj = new HttpService("brainbout");
+        httpObj.post("register", data).then(function(jsonResp){
+            quizList = jsonResp.quizVOList;
+            vm.length = quizList.length;
+            paintQuestion(vm,quizList,pointer);
+        });
+
+        vm.nextQuiz = function() {
+            if(pointer < quizList.length) {
+                paintQuestion(vm, quizList, ++pointer);
+            } else {
+                alert("Submit quiz!!!");
+            }
+        }
+    }
+
+    function paintQuestion(vm, quizList, pointer) {
+        vm.index = pointer + 1;
+        vm.question = quizList[pointer].quizTitle;
+        var optionList = quizList[0].optionList;
+
+        var tempList=new Array();
+        vm.optionLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
+        angular.forEach(optionList, function(option, index) {
+            var obj = {};
+            obj.name = option.optionTitle
+            obj.wanted=false;
+            tempList[index] = obj;
+        });
+        vm.options = tempList;
+        if((pointer + 1) === quizList.length) {
+            vm.buttonLabel = "Submit"
+        }
     }
 
 })();

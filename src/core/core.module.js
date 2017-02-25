@@ -11,14 +11,14 @@
         'ui.router'
     ])
         .factory('HttpService',['$http', '$q', function ($http, $q) {
-            var apiRoot = "../rest/";
+            var apiRoot = "/";
 
             var HttpService = function (apiModule) {
                 this.apiModule = apiModule;
             };
 
             function makeRequestSuccess(response) {
-                if (response.data.status == 200) {
+                if (response.status == 200) {
                     return response.data;
                 } else {
                     return $q.reject(response.data.message);
@@ -30,9 +30,9 @@
                 return $q.reject("Error#" + response.status + ": " + errMsg);
             }
 
-            HttpService.prototype.get = function (url) {
+            HttpService.prototype.get = function (url, data) {
                 var self = this;
-                return $http.get(apiRoot + self.apiModule + "/" + url).then(makeRequestSuccess, makeRequestFailed);
+                return $http.get(apiRoot + self.apiModule + "/" + url, {params:data}).then(makeRequestSuccess, makeRequestFailed);
             };
             HttpService.prototype.post = function (url, params) {
                 var self = this;

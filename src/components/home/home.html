@@ -15,12 +15,12 @@
                         <form data-ng-submit="vm.handleSubmit()">
                             <md-input-container class="md-block">
                                 <label>FULL NAME</label>
-                                <input ng-model="vm.title" type="text">
+                                <input ng-model="vm.title" type="text" required/>
                             </md-input-container>
 
                             <md-input-container class="md-block">
                                 <label>COMPANY EMAIL ADDRESS</label>
-                                <input ng-model="vm.email" type="email">
+                                <input ng-model="vm.email" type="email" required/>
                             </md-input-container>
                             <div layout="row" layout-align="center">
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">

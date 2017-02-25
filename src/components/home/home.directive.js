@@ -38,14 +38,32 @@
 
         vm.handleSubmit = handleSubmit;
 
+        var httpObj = new HttpService("brainbout");
+        var companySeq, competitionSeq, competitionStatus, timeLimit;
+
+        var data =  {
+            "ref": "abcdefgh"
+        }
+        httpObj.get("login", data).then(function(response) {
+            companySeq = response.companySeq;
+            competitionSeq = response.competitionSeq;
+            competitionStatus = response.competitionStatus;
+            timeLimit = response.timeLimit;
+        });
 
         function handleSubmit() {
             $state.transitionTo("introduction");
-        }
-        var httpObj = new HttpService("question");
-        httpObj.get("/list").then(function(jsonResp){
-            console.info(jsonResp);
-        })
-    }
 
+            var data = {
+                name: vm.title,
+                email: vm.email,
+                companySeq: companySeq,
+                competitionSeq: competitionSeq
+            }
+
+            httpObj.post("register", data).then(function(jsonResp){
+
+            });
+        }
+    }
 })();
