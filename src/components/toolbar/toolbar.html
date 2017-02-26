@@ -6,12 +6,13 @@
         </div>
         <h2 flex md-truncate>BRAIN BOUT</h2>
 
-        <md-button layout="column" layout-align="center center">
-            <span class="md-headline">{{ timeleft }}</span>
+        <md-button aria-label="TimeLeft">
+            <span class="md-headline">{{ vm.timeleft }}</span>
         </md-button>
 
-        <md-button layout="column" layout-align="end center">
-            <span>{{ username }}</span>
+        <md-button aria-label="User Name" >
+
+            <md-icon width="5" md-svg-src="images/account.svg" ng-hide="vm.username==''"></md-icon>  {{ vm.username }}
         </md-button>
     </div>
 </md-toolbar>

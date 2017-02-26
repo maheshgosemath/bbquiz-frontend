@@ -7,25 +7,16 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$mdDialog'];
+    ControllerFunction.$inject = ['$mdDialog','$cookieStore'];
 
     /* @ngInject */
-    function ControllerFunction($mdDialog) {
+    function ControllerFunction($mdDialog, $cookieStore) {
 
         var vm = this;
-        vm.username = null;
-        vm.password = null;
 
-        vm.handleSubmit = handleSubmit;
-        vm.handleCancel = handleCancel;
+        var userObj = $cookieStore.get('userinfo');
+        vm.username = userObj.name;
 
-        function handleSubmit() {
-            return $mdDialog.hide();
-        }
-
-        function handleCancel() {
-            return $mdDialog.hide();
-        }
     }
 
 })();

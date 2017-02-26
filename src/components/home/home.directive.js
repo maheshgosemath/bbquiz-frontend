@@ -27,10 +27,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies) {
+    function ControllerFunction($state, HttpService, $cookies,$rootScope) {
 
         var vm = this;
         vm.handleSubmit = handleSubmit;
@@ -57,6 +57,7 @@
             httpObj.post("register", data).then(function(jsonResp){
                 if(jsonResp.timeLeft > 0) {
                     if(jsonResp.quizVOList.length > 0) {
+                        $rootScope.username = vm.title;
                         var obj = new Object();
                         obj.name=vm.title;
                         obj.email=vm.email;

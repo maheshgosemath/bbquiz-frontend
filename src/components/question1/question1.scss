@@ -1,83 +1,90 @@
-.time{
-   padding-right:10px;
+.time {
+    padding-right: 10px;
 
-    b{
+    b {
         font-size: 35px;
-        color:white;
+        color: white;
 
     }
-    small{
-        font-size:12px;
-        color:white;
+    small {
+        font-size: 12px;
+        color: white;
     }
 
 }
 
-.welcome{
+.welcome {
 
-    b{
-        font-size:15px;
+    b {
+        font-size: 15px;
         padding-left: 200px;
-        color:white;
+        color: white;
 
     }
-    small{
-        font-size:18px;
+    small {
+        font-size: 18px;
         padding-left: 170px;
-        color:white;
+        color: white;
     }
 
 }
-
-
-
-
 
 .instruction-head1 {
     margin-top: -148px;
     text-align: center;
 }
 
-.question1{
+.question1 {
     background-color: white;
     color: grey;
     text-align: center;
     border-radius: 5px;
 }
-.options{
+
+.options {
     color: grey;
     padding-bottom: 50px;
-    width:200px;
+    width: 200px;
     height: 50px;
     text-align: center;
     padding-right: 300px;
     margin-left: 450px;
     font-size: large;
 
-    label{
+    label {
         margin-right: 15px;
 
     }
 }
+md-list-item.sel-item {
+    background: #DE3641;
+    color:white;
+    // border color while unchecked
+    md-radio-button.md-default-theme .md-off,
+    md-radio-button .md-off {
+        border-color: white;
+    }
+    // border color while checked
+    md-radio-button.md-default-theme.md-checked .md-off,
+    md-radio-button.md-checked .md-off {
+        border-color: white;
+    }
+    // fill color while checked
+    md-radio-button.md-default-theme .md-on,
+    md-radio-button .md-on {
+        background-color: white;
+    }
+    // ripple color when checking
+    md-radio-group.md-default-theme .md-checked .md-ink-ripple,
+    md-radio-group .md-checked .md-ink-ripple {
+        color: white;
+    }
+    // focused halo color when checked
+    md-radio-group.md-default-theme.md-focused:not(:empty) .md-checked .md-container:before,
+    md-radio-group.md-focused:not(:empty) .md-checked .md-container:before {
+        background-color: white;
+    }
+}
 
 
-.listdemoListControls md-divider {
-    margin-top: 0;
-    margin-bottom: 0; }
-
-.listdemoListControls md-list {
-    padding-top: 0; }
-
-.listdemoListControls md-list-item > p,
-.listdemoListControls md-list-item > .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
-    -webkit-user-select: none;
-    /* Chrome all / Safari all */
-    -moz-user-select: none;
-    /* Firefox all */
-    -ms-user-select: none;
-    /* IE 10+ */
-    user-select: none;
-    /* Likely future */ }
 

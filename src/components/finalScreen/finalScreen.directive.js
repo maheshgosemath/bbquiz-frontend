@@ -17,8 +17,7 @@
         var directive = {
             restrict: 'E',
             templateUrl: 'components/finalScreen/finalScreen.html',
-            scope: {
-            },
+            scope: {},
             controller: 'FinalScreenController',
             controllerAs: 'vm'
         };
@@ -36,12 +35,20 @@
         var userObj = $cookieStore.get('userinfo');
         vm.score = obj.score;
         vm.name = userObj.name;
+        vm.quizQuestions = userObj.quizList;
 
         var vm = this;
-        vm.newQuiz = function(){
+        vm.newQuiz = function () {
             $state.transitionTo('home');
         };
-
+        vm.getIsCorrect = function (qSeq) {
+            for (var i = 0; i < obj.quizOptionVOList.length; i++) {
+                if (obj.quizOptionVOList[i].quizSeq == qSeq) {
+                    return obj.quizOptionVOList[i].isCorrect == "Y";
+                }
+            }
+        }
     }
+
 
 })();
