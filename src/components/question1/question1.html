@@ -1,17 +1,16 @@
-<div class="question1-page" layout="row" layout-align="end">
+<div class="question1-page" layout="column" layout-align="end">
+    <div class="question1-page" layout="row" layout-align="end"  class="md-accent">
+        <md-button layout="row"  class="md-accent">
+           QUESTION {{vm.index}} of {{vm.length}}
+        </md-button>
+    </div>
+    <md-card layout="column" layout-fill>
+        <md-card-title class="md-accent" layout="row" layout-xs="column" layout-align="end">
+            <span class="md-headline" flex  class="md-accent">{{vm.question}}</span>
 
-    <div layout="column" layout-fill>
-        <md-toolbar class="md-accent">
 
-            <div class="md-toolbar-tools">
-                <h2 md-truncate flex>{{vm.question}}</h2>
+        </md-card-title>
 
-                <md-button>
-                    QUESTION {{vm.index}} of {{vm.length}}
-                </md-button>
-            </div>
-
-        </md-toolbar>
         <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
 
             <md-list ng-cloak="">
@@ -30,16 +29,17 @@
                     </md-list-item>
                 </md-radio-group>
             </md-list>
-
+            <div layout="row" layout-align="end">
+                <md-button type="submit" ng-click="vm.nextQuiz()" class="md-raised md-primary bigfab" aria-label="Use Android">
+                    {{vm.buttonLabel}}
+                </md-button>
+            </div>
 
         </md-content>
 
-    </div>
+    </md-card>
+
+
 </div>
 
-<div layout="row" layout-align="end">
-    <md-button type="submit" ng-click="vm.nextQuiz()" class="md-raised md-primary bigfab" aria-label="Use Android">
-        {{vm.buttonLabel}}
-    </md-button>
-</div>
 

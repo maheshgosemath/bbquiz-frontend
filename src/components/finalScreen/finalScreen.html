@@ -20,29 +20,34 @@
                 <div layout="row" layout-align="center">
                     <div flex-xs flex-gt-xs="50" layout="column">
                         <span class="md-subheader" layout="row" layout-align="center">   POST IT ON FACEBOOK</span>
-                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
-                               aria-label="Use Android">
-                        <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
-                        &nbsp;Share
-                    </md-button>
+                        <md-button class="md-raised md-primary" ng-click="vm.fbpost()"
+                                   aria-label="Use Android">
+                            <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
+                            &nbsp;Share
+                        </md-button>
                     </div>
                     <div flex-xs flex-gt-xs="50" layout="column">
                         <span class="md-subheader" layout="row" layout-align="center">  LIKE US ON FACEBOOK</span>
-                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
-                               aria-label="Use Android">
-                        <md-icon md-svg-src="../../images/thumb-up-button.svg"></md-icon> &nbsp; Like
-                    </md-button>
+                        <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
+                                   aria-label="Use Android">
+                            <md-icon md-svg-src="../../images/thumb-up-button.svg"></md-icon>
+                            &nbsp; Like
+                        </md-button>
                     </div>
                 </div>
-<br>
+                <br>
                 <md-list ng-cloak="">
 
                     <span class="md-subheader" layout="row" layout-align="center"></span>
                     <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
                     <div ng-repeat="ques in vm.quizQuestions">
-                        <p><md-icon md-svg-src="../../images/check.svg" ng-show="vm.getIsCorrect(ques.quizSeq)"></md-icon>
-                            <md-icon md-svg-src="../../images/close.svg" class="md-default-theme" ng-hide="vm.getIsCorrect(ques.quizSeq)"></md-icon>
-                            {{ques.quizTitle }} </p>
+                        <p>
+                            <md-icon md-svg-src="../../images/check.svg"
+                                     ng-show="vm.getIsCorrect(ques.quizSeq)"></md-icon>
+                            <md-icon md-svg-src="../../images/close.svg" class="md-default-theme"
+                                     ng-hide="vm.getIsCorrect(ques.quizSeq)"></md-icon>
+                            {{ques.quizTitle }}
+                        </p>
                     </div>
                 </md-list>
             </md-content>

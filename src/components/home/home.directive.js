@@ -27,14 +27,16 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope', 'userService'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies,$rootScope) {
+    function ControllerFunction($state, HttpService, $cookies,$rootScope, userService) {
 
         var vm = this;
         vm.handleSubmit = handleSubmit;
         $state.username='';
+
+        clearCookie();
 
         var httpObj = new HttpService("brainbout");
 
@@ -55,22 +57,35 @@
             };
 
             httpObj.post("register", data).then(function(jsonResp){
-                if(jsonResp.timeLeft > 0) {
-                    if(jsonResp.quizVOList.length > 0) {
-                        $rootScope.username = vm.title;
-                        var obj = new Object();
-                        obj.name=vm.title;
-                        obj.email=vm.email;
-                        obj.quizList = jsonResp.quizVOList;
-                        $cookies.put('userinfo', obj);
+                putUserInfo();
+                if(jsonResp.userStatus == 'submitted') {
+                    $state.transitionTo("finalScreen");
+                } else {
+                    if (jsonResp.timeLeft > 0) {
                         $state.transitionTo("introduction");
                     } else {
-                        alert('No questions found');
+                        alert('Your quiz time is over');
                     }
-                } else {
-                    alert('Your quiz time is over');
                 }
             });
+        }
+
+        function putUserInfo() {
+            var obj = new Object();
+            obj.name=vm.title;
+            obj.email=vm.email;
+            $rootScope.username = vm.title;
+            $cookies.put('userinfo', obj);
+            userService.addUsername(vm.title);
+        }
+
+        function clearCookie() {
+            $cookies.remove('userinfo');
+            $cookies.remove('compinfo');
+            $cookies.remove('pointer');
+            $cookies.remove('submissionResult');
+            $cookies.remove('useranswer');
+            $cookies.remove('quizList');
         }
     }
 })();

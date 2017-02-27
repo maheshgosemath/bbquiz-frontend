@@ -32,7 +32,6 @@
     var vm, pointer, quizList;
     function ControllerFunction($state, HttpService, $cookieStore) {
         var vm = this;
-        vm.length = 10;
         vm.index = 1;
         vm.buttonLabel = "NEXT"
         var pointer = 0;
@@ -41,12 +40,26 @@
 
         var userObj = $cookieStore.get('userinfo');
         var compObj = $cookieStore.get('compinfo');
-        var quizList = userObj.quizList;
+        if(!userObj) {
+            $state.transitionTo("home");
+        }
+        var quizList;
+        init();
 
-        vm.length = quizList.length;
-        paintQuestion(vm,quizList,pointer);
-        pointer = pointer + 1;
-        var answered = false;
+        var data = {
+            email: userObj.email,
+            companySeq: compObj.companySeq,
+            competitionSeq: compObj.competitionSeq,
+            quizSeqList: $cookieStore.get('quizList')
+        };
+        var httpObj = new HttpService("brainbout");
+        httpObj.post("quizlist", data).then(function(response) {
+            quizList = response.quizVOList;
+            saveQuizSeqList();
+            vm.length = quizList.length;
+            paintQuestion(vm,quizList,pointer);
+            pointer = pointer + 1;
+        });
 
         vm.nextQuiz = function() {
             if(vm.optionSeq != '') {
@@ -57,15 +70,8 @@
                     pointer = pointer + 1;
                 } else {
                     submitQuiz();
-                    console.log(answerList);
-                    alert("Submit quiz!!!");
-
                 }
             }
-        }
-
-        vm.endQuiz = function() {
-            $state.transitionTo('finalScreen');
         }
 
         function store(quizSeq, optionSeq) {
@@ -73,6 +79,16 @@
             answer.quizSeq=quizSeq;
             answer.optionSeq=optionSeq;
             answerList.push(answer);
+            $cookieStore.put('pointer', pointer);
+            $cookieStore.put('useranswer', answerList);
+        }
+
+        function saveQuizSeqList() {
+            var quizSeqList = new Array();
+            for(var i=0;i<quizList.length;i++) {
+                quizSeqList[i]=quizList[0].quizSeq;
+            }
+            $cookieStore.put('quizList', quizSeqList);
         }
 
         function submitQuiz() {
@@ -86,6 +102,17 @@
                 $cookieStore.put("submissionResult", jsonResp);
                 $state.transitionTo('finalScreen');
             });
+        }
+
+        function init() {
+            pointer = $cookieStore.get('pointer');
+            if(!pointer) {
+                pointer = 0;
+            }
+            answerList = $cookieStore.get('useranswer');
+            if(!answerList) {
+                answerList = new Array();
+            }
         }
     }
 
@@ -108,10 +135,6 @@
         if((pointer + 1) === quizList.length) {
             vm.buttonLabel = "Submit"
         }
-    }
-
-    function init() {
-
     }
 
 })();
