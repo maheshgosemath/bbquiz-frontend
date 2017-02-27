@@ -16,6 +16,7 @@
     ]).factory('userService', function() {
         var username;
         var addUsername = function(newUsername) {
+            console.log(newUsername);
             username = newUsername;
         }
         var getUsername = function() {
