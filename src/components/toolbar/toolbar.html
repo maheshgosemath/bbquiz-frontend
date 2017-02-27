@@ -7,7 +7,9 @@
         <h2 flex md-truncate>BRAIN BOUT</h2>
 
         <md-button aria-label="TimeLeft">
-            <span class="md-headline">{{ vm.timeleft }}</span>
+            <span class="md-headline">
+                <timer ng-hide="vm.quizTimer==''" countdown="10" max-time-unit="'hour'" interval="1000">{{hours}}:{{minutes}}:{{seconds}}</timer>
+            </span>
         </md-button>
 
         <md-button aria-label="User Name" >

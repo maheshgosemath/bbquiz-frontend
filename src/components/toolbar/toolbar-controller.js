@@ -2,15 +2,15 @@
 
     'use strict';
 
-    angular.module('app.toolbar')
+    angular.module('app.toolbar', ['timer'])
         .controller('ToolbarController', ControllerFunction);
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$mdDialog','$cookieStore', 'userService', '$scope'];
+    ControllerFunction.$inject = ['$mdDialog','$cookieStore', '$rootScope'];
 
     /* @ngInject */
-    function ControllerFunction($mdDialog, $cookieStore, userService, $scope) {
+    function ControllerFunction($mdDialog, $cookieStore, $rootScope) {
 
         var vm = this;
 
@@ -18,9 +18,18 @@
         if (userObj) {
             vm.username = userObj.name;
         }
-        $scope.$watch('username', function () {
-            vm.username = userService.getUsername();
-        })
+        $rootScope.$watch("username", function(newValue, oldValue) {
+            if(oldValue != newValue && newValue != '') {
+                vm.username = newValue;
+            }
+        });
+        vm.quizTimer;
+        $rootScope.$watch("quizTimer", function(newValue, oldValue) {
+            if(oldValue !== newValue && newValue) {
+                $rootScope.$broadcast('timer-add-cd-seconds', newValue * 60);
+                $rootScope.$broadcast('timer-start');
+            }
+        });
     }
 
 })();
