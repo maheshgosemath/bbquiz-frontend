@@ -4,8 +4,8 @@
             <div class="md-display-1" layout="row" layout-align="center">
                 {{ vm.name }}
             </div>
-            <div class="md-headline" layout="row" layout-align="center">
-                <h3>YOUR SCORE</h3>
+            <div class="md-subheader" layout="row" layout-align="center">
+                <h3>YOU SCORED</h3>
             </div>
             <div class="md-display-3" layout="row" layout-align="center">
                 {{ vm.score }}
@@ -18,24 +18,33 @@
         <div>
             <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
                 <div layout="row" layout-align="center">
-                    <md-button class="md-raised md-primary" href="javascript:void(0);" ng-click="vm.fbshare()"
+                    <div flex-xs flex-gt-xs="50" layout="column">
+                        <span class="md-subheader" layout="row" layout-align="center">   POST IT ON FACEBOOK</span>
+                    <md-button class="md-raised md-primary" ng-click="vm.fbpost()"
                                aria-label="Use Android">
                         <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
-                        Share
+                        &nbsp;Share
                     </md-button>
-
-                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="/blank"
+                    </div>
+                    <div flex-xs flex-gt-xs="50" layout="column">
+                        <span class="md-subheader" layout="row" layout-align="center">  LIKE US ON FACEBOOK</span>
+                    <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
                                aria-label="Use Android">
-                        <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
-                        Like
+                        <md-icon md-svg-src="../../images/thumb-up-button.svg"></md-icon> &nbsp; Like
                     </md-button>
+                    </div>
                 </div>
-                <!--<md-list ng-cloak="" class="listdemoListControls">
-                    <md-subheader class="md-no-sticky"><b>YOR RESPONSES</b></md-subheader>
-                    <md-list-item ng-repeat="topping in vm.toppings">
-                        <p><label>{{vm.optionLabels[$index]}}</label> {{ topping.name }} </p>
-                    </md-list-item>
-                </md-list>-->
+<br>
+                <md-list ng-cloak="">
+
+                    <span class="md-subheader" layout="row" layout-align="center"></span>
+                    <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
+                    <div ng-repeat="ques in vm.quizQuestions">
+                        <p><md-icon md-svg-src="../../images/check.svg" ng-show="vm.getIsCorrect(ques.quizSeq)"></md-icon>
+                            <md-icon md-svg-src="../../images/close.svg" class="md-default-theme" ng-hide="vm.getIsCorrect(ques.quizSeq)"></md-icon>
+                            {{ques.quizTitle }} </p>
+                    </div>
+                </md-list>
             </md-content>
 
 
@@ -45,8 +54,8 @@
 
 
             <div layout="row" layout-align="center">
-                <md-button ng-click="vm.newQuiz()" class="md-raised md-primary" aria-label="Use Android">
-                    PARTICIPATE
+                <md-button ng-click="vm.newQuiz()" class="md-raised md-accent" aria-label="Use Android">
+                    PARTICIPATE NOW
                 </md-button>
             </div>
         </div>

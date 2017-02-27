@@ -40,6 +40,9 @@
 
         var userObj = $cookieStore.get('userinfo');
         var compObj = $cookieStore.get('compinfo');
+        if(!userObj) {
+            $state.transitionTo("home");
+        }
         var quizList;
         init();
 

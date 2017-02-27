@@ -27,10 +27,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope', 'userService'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies) {
+    function ControllerFunction($state, HttpService, $cookies,$rootScope, userService) {
 
         var vm = this;
         vm.handleSubmit = handleSubmit;
@@ -57,13 +57,15 @@
             };
 
             httpObj.post("register", data).then(function(jsonResp){
+                putUserInfo();
                 if(jsonResp.userStatus == 'submitted') {
                     $state.transitionTo("finalScreen");
-                }
-                if(jsonResp.timeLeft > 0) {
-                    $state.transitionTo("introduction");
                 } else {
-                    alert('Your quiz time is over');
+                    if (jsonResp.timeLeft > 0) {
+                        $state.transitionTo("introduction");
+                    } else {
+                        alert('Your quiz time is over');
+                    }
                 }
             });
         }
@@ -72,7 +74,9 @@
             var obj = new Object();
             obj.name=vm.title;
             obj.email=vm.email;
+            $rootScope.username = vm.title;
             $cookies.put('userinfo', obj);
+            userService.addUsername(vm.title);
         }
 
         function clearCookie() {
