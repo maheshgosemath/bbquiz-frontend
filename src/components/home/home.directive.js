@@ -36,6 +36,8 @@
         vm.handleSubmit = handleSubmit;
         $state.username='';
 
+        clearCookie();
+
         var httpObj = new HttpService("brainbout");
 
         httpObj.get("login", {ref:"abcdefgh"}).then(function(response) {
@@ -55,21 +57,31 @@
             };
 
             httpObj.post("register", data).then(function(jsonResp){
+                if(jsonResp.userStatus == 'submitted') {
+                    $state.transitionTo("finalScreen");
+                }
                 if(jsonResp.timeLeft > 0) {
-                    if(jsonResp.quizVOList.length > 0) {
-                        var obj = new Object();
-                        obj.name=vm.title;
-                        obj.email=vm.email;
-                        obj.quizList = jsonResp.quizVOList;
-                        $cookies.put('userinfo', obj);
-                        $state.transitionTo("introduction");
-                    } else {
-                        alert('No questions found');
-                    }
+                    $state.transitionTo("introduction");
                 } else {
                     alert('Your quiz time is over');
                 }
             });
+        }
+
+        function putUserInfo() {
+            var obj = new Object();
+            obj.name=vm.title;
+            obj.email=vm.email;
+            $cookies.put('userinfo', obj);
+        }
+
+        function clearCookie() {
+            $cookies.remove('userinfo');
+            $cookies.remove('compinfo');
+            $cookies.remove('pointer');
+            $cookies.remove('submissionResult');
+            $cookies.remove('useranswer');
+            $cookies.remove('quizList');
         }
     }
 })();
