@@ -7,14 +7,14 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$mdDialog','$cookieStore', '$rootScope'];
+    ControllerFunction.$inject = ['$mdDialog','$cookieStore', '$rootScope', '$scope'];
 
     /* @ngInject */
-    function ControllerFunction($mdDialog, $cookieStore, $rootScope) {
+    function ControllerFunction($mdDialog, $cookieStore, $rootScope, $scope) {
 
         var vm = this;
-
         var userObj = $cookieStore.get('userinfo');
+        vm.quizTimer = 1;
         if (userObj) {
             vm.username = userObj.name;
         }
@@ -23,11 +23,12 @@
                 vm.username = newValue;
             }
         });
-        vm.quizTimer;
         $rootScope.$watch("quizTimer", function(newValue, oldValue) {
             if(oldValue !== newValue && newValue) {
-                $rootScope.$broadcast('timer-add-cd-seconds', newValue * 60);
-                $rootScope.$broadcast('timer-start');
+                vm.quizTimer = -1;
+                $scope.$broadcast('timer-add-cd-seconds', newValue * 60);
+                $scope.$broadcast('timer-start');
+                $scope.timerRunning = true;
             }
         });
     }
