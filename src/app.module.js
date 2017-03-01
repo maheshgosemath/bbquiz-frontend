@@ -26,5 +26,21 @@
             addUsername: addUsername,
             getUsername: getUsername
         }
+    }).factory('errorService',function() {
+        var errorMsg, errorHeader;
+        var addError = function(newErrorMsg, newErrorHeader) {
+            errorMsg = newErrorMsg;
+            errorHeader = newErrorHeader;
+        }
+        var getError = function() {
+            return {
+                errorMsg: errorMsg,
+                errorHeader: errorHeader
+            }
+        }
+        return {
+            addError: addError,
+            getError: getError
+        }
     });
 })();

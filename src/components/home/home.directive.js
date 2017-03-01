@@ -26,10 +26,10 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope', 'userService'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope', 'userService', 'errorService'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies,$rootScope, userService) {
+    function ControllerFunction($state, HttpService, $cookies,$rootScope, userService, errorService) {
 
         var vm = this;
         vm.handleSubmit = handleSubmit;
@@ -47,6 +47,11 @@
 
         httpObj.get("login", {ref:ref}).then(function(response) {
             if(response.competitionStatus == 'competition_closed') {
+                errorService.addError('The requested competition is closed now', 'Competition closed');
+                $state.transitionTo('error');
+            }
+            if(response.competitionStatus == 'competition_not_started') {
+                errorService.addError('The requested competition has not started yet', 'Competition not started');
                 $state.transitionTo('error');
             }
             var obj = new Object();
@@ -66,13 +71,19 @@
 
             httpObj.post("register", data).then(function(jsonResp){
                 putUserInfo();
-                if(jsonResp.userStatus == 'submitted') {
-                    $state.transitionTo("finalScreen");
+                if(jsonResp.userStatus == 'USERNOTELIGIBLE') {
+                    errorService.addError('Your are not eligible to register for this event', 'Error');
+                    $state.transitionTo('error');
                 } else {
-                    if (jsonResp.timeLeft > 0) {
-                        $state.transitionTo("introduction");
+                    if (jsonResp.userStatus == 'submitted') {
+                        $state.transitionTo("finalScreen");
                     } else {
-                        alert('Your quiz time is over');
+                        if (jsonResp.timeLeft > 0) {
+                            $state.transitionTo("introduction");
+                        } else {
+                            errorService.addError('Your quiz time is over', 'Error');
+                            $state.transitionTo('error');
+                        }
                     }
                 }
             });

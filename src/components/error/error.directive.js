@@ -25,25 +25,21 @@
         return directive;
     }
 
-    ControllerFunction.$inject = ['$rootScope', '$scope'];
+    ControllerFunction.$inject = ['errorService'];
 
     /* @ngInject */
-    function ControllerFunction($rootScope, $scope) {
+    function ControllerFunction(errorService) {
         var vm = this;
         vm.errorheader = '';
         vm.errormsg = '';
-        $rootScope.errormsg='';
-        $rootScope.errorheader='';
 
-        $rootScope.$watch("errorheader", function(newValue, oldValue) {
-            if(newValue != oldValue && newValue) {
-                vm.errorheader = newValue;
-            }
-        });
-        $rootScope.$watch("errormsg", function(newValue, oldValue) {
-            if(newValue != oldValue && newValue) {
-                vm.errormsg = newValue;
-            }
-        });
+        var error = errorService.getError();
+        if(error.errorMsg && error.errorHeader && error.errorMsg != '' && error.errorHeader != '') {
+            vm.errormsg = error.errorMsg;
+            vm.errorheader = error.errorHeader;
+        } else {
+            vm.errorheader = 'Error encountered';
+            vm.errormsg = 'Some error has occurred. Please contact support team.';
+        }
     }
 })();

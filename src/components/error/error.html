@@ -1,11 +1,8 @@
 <md-card>
     <md-card-title>
         <md-card-title-text>
-            <div class="md-display-1" layout="row" layout-align="center" ng-if="vm.errorheader != ''">
+            <div class="md-display-1" layout="row" layout-align="center">
                 {{ vm.errorheader }}
-            </div>
-            <div class="md-display-1" layout="row" layout-align="center" ng-if="vm.errorheader == ''">
-                Error encountered
             </div>
         </md-card-title-text>
     </md-card-title>
@@ -15,11 +12,8 @@
         <div>
             <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
                 <div layout="row" layout-align="center">
-                    <div flex-xs flex-gt-xs="100" layout="column" ng-if="vm.errormsg != ''">
+                    <div flex-xs flex-gt-xs="100" layout="column">
                         {{ vm.errormsg }}
-                    </div>
-                    <div flex-xs flex-gt-xs="100" layout="column" ng-if="vm.errormsg == ''">
-                        Some error has occurred. Please contact support team.
                     </div>
                 </div>
             </md-content>
