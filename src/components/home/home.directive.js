@@ -34,14 +34,21 @@
         var vm = this;
         vm.handleSubmit = handleSubmit;
         $state.username='';
+        var ref;
 
         clearCookie();
 
-        console.log($state.params);
-
+        if($state && $state.params && $state.params.ref) {
+            ref = $state.params.ref;
+        } else {
+            $state.transitionTo('error');
+        }
         var httpObj = new HttpService("brainbout");
 
-        httpObj.get("login", {ref:"abcdefgh"}).then(function(response) {
+        httpObj.get("login", {ref:ref}).then(function(response) {
+            if(response.competitionStatus == 'competition_closed') {
+                $state.transitionTo('error');
+            }
             var obj = new Object();
             obj.companySeq = response.companySeq;
             obj.competitionSeq = response.competitionSeq;

@@ -104,6 +104,7 @@
             }
             var httpObj = new HttpService("brainbout");
             httpObj.post("submit", data).then(function(jsonResp){
+                $rootScope.timerStatus = 'stop';
                 $cookieStore.put("submissionResult", jsonResp);
                 $state.transitionTo('finalScreen');
             });

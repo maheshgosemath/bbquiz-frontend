@@ -31,6 +31,14 @@
                 $scope.timerRunning = true;
             }
         });
+        $rootScope.$watch("timerStatus", function(newValue, oldValue) {
+            if(oldValue !== newValue && newValue) {
+                if(newValue == 'stop') {
+                    $scope.$broadcast('timer-stop');
+                    $scope.timerRunning = false;
+                }
+            }
+        });
     }
 
 })();

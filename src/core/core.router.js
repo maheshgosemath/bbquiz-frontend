@@ -20,6 +20,11 @@
                 template: '<tmpl-home></tmpl-home>'
             })
 
+            .state('error', {
+                url: '/',
+                template: '<tmpl-error></tmpl-error>'
+            })
+
             .state('introduction', {
                 url: '/introduction',
                 template: '<tmpl-introduction></tmpl-introduction>'
