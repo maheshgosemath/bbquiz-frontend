@@ -26,17 +26,18 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore', '$rootScope'];
 
     /* @ngInject */
-    var vm, pointer, quizList;
-    function ControllerFunction($state, HttpService, $cookieStore) {
+    function ControllerFunction($state, HttpService, $cookieStore, $rootScope) {
         var vm = this;
         vm.index = 1;
         vm.buttonLabel = "NEXT"
         var pointer = 0;
         var answerList = new Array();
         vm.optionSeq = '';
+        var compInterval;
+        $rootScope.quizTimer = 0;
 
         var userObj = $cookieStore.get('userinfo');
         var compObj = $cookieStore.get('compinfo');
@@ -59,6 +60,8 @@
             vm.length = quizList.length;
             paintQuestion(vm,quizList,pointer);
             pointer = pointer + 1;
+            compInterval = setTimeout(submitQuiz, (response.timeLeft * 60000));
+            $rootScope.quizTimer = response.timeLeft;
         });
 
         vm.nextQuiz = function() {
@@ -69,6 +72,7 @@
                     paintQuestion(vm, quizList, pointer);
                     pointer = pointer + 1;
                 } else {
+                    store(vm.quizSeq, vm.optionSeq);
                     submitQuiz();
                 }
             }
@@ -86,12 +90,13 @@
         function saveQuizSeqList() {
             var quizSeqList = new Array();
             for(var i=0;i<quizList.length;i++) {
-                quizSeqList[i]=quizList[0].quizSeq;
+                quizSeqList.push(quizList[i].quizSeq);
             }
             $cookieStore.put('quizList', quizSeqList);
         }
 
         function submitQuiz() {
+            clearTimeout(compInterval);
             var data = {
                 quizOptionVOList: answerList,
                 email: userObj.email,
@@ -99,6 +104,7 @@
             }
             var httpObj = new HttpService("brainbout");
             httpObj.post("submit", data).then(function(jsonResp){
+                $rootScope.timerStatus = 'stop';
                 $cookieStore.put("submissionResult", jsonResp);
                 $state.transitionTo('finalScreen');
             });

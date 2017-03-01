@@ -30,6 +30,8 @@
     /* @ngInject */
     function ControllerFunction($state, HttpService, $cookieStore) {
         var vm = this;
+        var quizList;
+        vm.optionList;
 
         var obj = $cookieStore.get('submissionResult');
         var userObj = $cookieStore.get('userinfo');
@@ -42,6 +44,7 @@
         if(obj && obj.score) {
             vm.score = obj.score;
             vm.url= 'http://brainbout.theuniquemedia.in/brainbout/app?token=' + obj.token;
+            paintResponse();
         } else {
             var data = {
                 email: userObj.email,
@@ -51,7 +54,13 @@
             httpObj.get("userstats", data).then(function(response) {
                 vm.score = response.score;
                 vm.url= 'http://brainbout.theuniquemedia.in/brainbout/app?token=' + response.token;
+                vm.optionList = response.quizOptionVOList;
+                paintResponse();
             });
+        }
+
+        if(obj && obj.quizOptionVOList) {
+            vm.optionList = obj.quizOptionVOList;
         }
 
         vm.newQuiz = function(){
@@ -63,11 +72,21 @@
             window.open(url, "newWindow", "status = 1, height = 500, width = 500, resizable = 0");
         }
 
-        vm.getIsCorrect = function (qSeq) {
-            for (var i = 0; i < obj.quizOptionVOList.length; i++) {
-                if (obj.quizOptionVOList[i].quizSeq == qSeq) {
-                    return obj.quizOptionVOList[i].isCorrect == "Y";
+        function paintResponse() {
+            var quizSeqList = $cookieStore.get('quizList');
+            if(quizSeqList) {
+                var data1 = {
+                    quizSeqList: quizSeqList
                 }
+                var httpObj = new HttpService("brainbout");
+                httpObj.post("quizlist", data1).then(function (response) {
+                    quizList = response.quizVOList;
+                    if (quizList) {
+                        for (var i = 0; i < quizList.length && i < vm.optionList.length; i++) {
+                            vm.optionList[i].quizTitle = quizList[i].quizTitle;
+                        }
+                    }
+                });
             }
         }
     }

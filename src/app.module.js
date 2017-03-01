@@ -11,36 +11,12 @@
         'app.toolbar',
         'app.introduction',
         'app.question1',
-        'app.finalScreen'
+        'app.finalScreen',
+        'app.error'
 
-    ]).factory('quizListService', function() {
-        var myList = [];
-        var addList = function (newObj) {
-            myList.push(newObj);
-        }
-        var getList = function () {
-            return myList;
-        }
-        return {
-            addList: addList,
-            getList: getList
-        }
-    }).factory("compService", function() {
-        var userObj;
-        var addCompetition = function (newObj) {
-            userObj = newObj;
-        };
-        var getCompetition = function () {
-            return userObj;
-        };
-        return {
-            addComp: addCompetition,
-            getComp: getCompetition
-        }
-    }).factory('userService', function() {
+    ]).factory('userService', function() {
         var username;
         var addUsername = function(newUsername) {
-            console.log(newUsername);
             username = newUsername;
         }
         var getUsername = function() {
@@ -49,6 +25,22 @@
         return {
             addUsername: addUsername,
             getUsername: getUsername
+        }
+    }).factory('errorService',function() {
+        var errorMsg, errorHeader;
+        var addError = function(newErrorMsg, newErrorHeader) {
+            errorMsg = newErrorMsg;
+            errorHeader = newErrorHeader;
+        }
+        var getError = function() {
+            return {
+                errorMsg: errorMsg,
+                errorHeader: errorHeader
+            }
+        }
+        return {
+            addError: addError,
+            getError: getError
         }
     });
 })();

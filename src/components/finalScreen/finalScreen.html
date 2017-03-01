@@ -36,16 +36,14 @@
                     </div>
                 </div>
                 <br>
-                <md-list ng-cloak="">
+                <md-list ng-cloak="" ng-if="vm.optionList.length > 0">
 
                     <span class="md-subheader" layout="row" layout-align="center"></span>
                     <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
-                    <div ng-repeat="ques in vm.quizQuestions">
+                    <div ng-repeat="ques in vm.optionList">
                         <p>
-                            <md-icon md-svg-src="../../images/check.svg"
-                                     ng-show="vm.getIsCorrect(ques.quizSeq)"></md-icon>
-                            <md-icon md-svg-src="../../images/close.svg" class="md-default-theme"
-                                     ng-hide="vm.getIsCorrect(ques.quizSeq)"></md-icon>
+                            <md-icon ng-if="ques.isCorrect == 'Y'" md-svg-src="../../images/check.svg"></md-icon>
+                            <md-icon ng-if="ques.isCorrect == 'N'" md-svg-src="../../images/close.svg" class="md-default-theme"></md-icon>
                             {{ques.quizTitle }}
                         </p>
                     </div>

@@ -1,0 +1,22 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <div class="md-display-1" layout="row" layout-align="center">
+                {{ vm.errorheader }}
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+
+
+    <md-card-content layout="row" layout-align="center">
+        <div>
+            <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
+                <div layout="row" layout-align="center">
+                    <div flex-xs flex-gt-xs="100" layout="column">
+                        {{ vm.errormsg }}
+                    </div>
+                </div>
+            </md-content>
+        </div>
+    </md-card-content>
+</md-card>
