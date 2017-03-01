@@ -25,7 +25,6 @@
         return directive;
     }
 
-
     // ----- ControllerFunction -----
     ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore','$rootScope', 'userService'];
 
@@ -37,6 +36,8 @@
         $state.username='';
 
         clearCookie();
+
+        console.log($state.params);
 
         var httpObj = new HttpService("brainbout");
 

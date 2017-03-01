@@ -72,6 +72,7 @@
                     paintQuestion(vm, quizList, pointer);
                     pointer = pointer + 1;
                 } else {
+                    store(vm.quizSeq, vm.optionSeq);
                     submitQuiz();
                 }
             }
@@ -89,7 +90,7 @@
         function saveQuizSeqList() {
             var quizSeqList = new Array();
             for(var i=0;i<quizList.length;i++) {
-                quizSeqList[i]=quizList[0].quizSeq;
+                quizSeqList.push(quizList[i].quizSeq);
             }
             $cookieStore.put('quizList', quizSeqList);
         }

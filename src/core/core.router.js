@@ -16,7 +16,7 @@
 
         $stateProvider
             .state('home', {
-                url: '/',
+                url: '/ref/:ref',
                 template: '<tmpl-home></tmpl-home>'
             })
 
