@@ -43,6 +43,11 @@
         } else {
             $state.transitionTo('error');
         }
+
+        vm.gotoRegister = function(){
+            $state.transitionTo('register');
+        };
+
         var httpObj = new HttpService("brainbout");
 
         httpObj.get("login", {ref:ref}).then(function(response) {

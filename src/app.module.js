@@ -12,6 +12,7 @@
         'app.introduction',
         'app.question1',
         'app.finalScreen',
+        'app.register',
         'app.error'
 
     ]).factory('userService', function() {

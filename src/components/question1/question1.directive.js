@@ -107,6 +107,7 @@
                 $rootScope.timerStatus = 'stop';
                 $cookieStore.put("submissionResult", jsonResp);
                 $state.transitionTo('finalScreen');
+                $rootScope.quizTimer=1;
             });
         }
 

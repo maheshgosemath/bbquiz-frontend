@@ -35,7 +35,10 @@
                 template: '<tmpl-question1></tmpl-question1>'
             })
 
-
+            .state('register', {
+                url: '/register',
+                template: '<tmpl-register></tmpl-register>'
+            })
             .state('finalScreen', {
                 url: '/finalScreen',
                 template: '<tmpl-final-screen></tmpl-final-screen>'
