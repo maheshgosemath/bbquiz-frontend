@@ -13,24 +13,31 @@
                     </div>
                     <md-card-content>
                         <form data-ng-submit="vm.handleSubmit()">
-                            <md-input-container class="md-block">
-                                <label>FULL NAME</label>
-                                <input ng-model="vm.title" type="text" required/>
-                            </md-input-container>
+
 
                             <md-input-container class="md-block">
                                 <label>COMPANY EMAIL ADDRESS</label>
                                 <input ng-model="vm.email" type="email" required/>
                             </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <input ng-model="vm.password" type="password" placeholder="Password" required>
+                            </md-input-container>
+
                             <div layout="row" layout-align="center">
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
                                     ENTER
                                 </md-button>
                             </div>
+
+
                         </form>
                     </md-card-content>
-                    <md-card-actions layout="row" layout-align="center">
-
+                    <md-card-actions layout="row" layout-align="center center">
+                        <span class="md-subheader">Not registered?</span>
+                        <md-button type="button" class="md-primary" aria-label="Use Android" ng-click="vm.gotoRegister()">
+                            SIGN UP
+                        </md-button>
                     </md-card-actions>
                 </md-card>
             </div>

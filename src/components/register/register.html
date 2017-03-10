@@ -1,0 +1,95 @@
+<div class="home-page">
+
+    <div class="form-content">
+
+        <div layout="row" layout-align="center">
+            <div flex-xs flex-gt-xs="40" layout="column">
+
+                <md-card>
+
+                    <div layout="row" layout-align="center">
+                        <img src="../../images/competition_logo.png" flex-sm flex-gt-sm="40" class="img-responsive"
+                             alt="Washed Out"/>
+
+                    </div>
+                    <md-card-title  layout="row" layout-align="center">
+                         <span class="md-heading">REGISTRATION FORM</span>
+                    </md-card-title>
+
+                    <md-card-content>
+                        <form data-ng-submit="vm.handleSubmit()">
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>First name</label>
+                                    <input ng-model="vm.firstName">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Last name</label>
+                                    <input ng-model="theMax">
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row">
+                             <md-input-container class="md-block" flex="100">
+                                <label>Company</label>
+                                <md-select ng-model="vm.company">
+                                    <md-option><em>Asian Paints</em></md-option>
+                                    <md-option><em>Edelweiss</em></md-option>
+                                    <md-option><em>Mahindra Home Rural Finance Ltd.</em></md-option>
+                                    <md-option><em>Markets & Markets</em></md-option>
+                                    <md-option><em>Rustomjee</em></md-option>
+
+                                </md-select>
+                            </md-input-container>
+
+
+                            </div>
+
+
+                            <div>
+                            <md-input-container class="md-block">
+                                <input ng-model="vm.phone" type="text" placeholder="Phone Number">
+                            </md-input-container>
+                            </div>
+
+
+                            <div>
+                            <md-input-container class="md-block">
+                                <input ng-model="vm.email" type="email" placeholder="Email" ng-required="true">
+                            </md-input-container>
+                            </div>
+
+                            <div>
+                                <md-input-container class="md-block">
+                                    <input ng-model="vm.password" type="password" placeholder="Password">
+                                </md-input-container>
+
+                                <md-input-container class="md-block">
+                                    <input ng-model="vm.passwordConfirm" type="password" placeholder="Confirm Password">
+                                </md-input-container>
+                            </div>
+
+
+                            <div layout="row" layout-align="center">
+                                <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
+                                    REGISTER
+                                </md-button>
+                            </div>
+
+                        </form>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center center">
+                        <span class="md-subheader">Already Registered?</span>
+                        <md-button type="button" class="md-primary" aria-label="Use Android" ng-click="vm.gotoLogin()">
+                            SIGN IN
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+
+    </div>
+</div>
+
