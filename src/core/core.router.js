@@ -16,12 +16,12 @@
 
         $stateProvider
             .state('home', {
-                url: '/ref/:ref',
+                url: '/',
                 template: '<tmpl-home></tmpl-home>'
             })
 
             .state('error', {
-                url: '/',
+                url: '/error',
                 template: '<tmpl-error></tmpl-error>'
             })
 

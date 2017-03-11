@@ -12,16 +12,16 @@
                              alt="Washed Out"/>
                     </div>
                     <md-card-content>
-                        <form data-ng-submit="vm.handleSubmit()">
+                        <form data-ng-submit="vm.handleSubmit()" id="login_form">
 
 
                             <md-input-container class="md-block">
                                 <label>COMPANY EMAIL ADDRESS</label>
-                                <input ng-model="vm.email" type="email" required/>
+                                <input ng-model="vm.email" type="email" required name="j_username"/>
                             </md-input-container>
 
                             <md-input-container class="md-block">
-                                <input ng-model="vm.password" type="password" placeholder="Password" required>
+                                <input ng-model="vm.password" type="password" placeholder="Password" required name="j_password">
                             </md-input-container>
 
                             <div layout="row" layout-align="center">

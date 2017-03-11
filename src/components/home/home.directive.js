@@ -38,17 +38,11 @@
 
         clearCookie();
 
-        if($state && $state.params && $state.params.ref) {
-            ref = $state.params.ref;
-        } else {
-            $state.transitionTo('error');
-        }
-
         vm.gotoRegister = function(){
             $state.transitionTo('register');
         };
 
-        var httpObj = new HttpService("brainbout");
+        /*var httpObj = new HttpService("brainbout");
 
         httpObj.get("login", {ref:ref}).then(function(response) {
             if(response.competitionStatus == 'competition_closed') {
@@ -63,9 +57,37 @@
             obj.companySeq = response.companySeq;
             obj.competitionSeq = response.competitionSeq;
             $cookies.put('compinfo', obj);
-        });
+        });*/
 
         function handleSubmit() {
+            var data = {
+                j_username: vm.email,
+                j_password: vm.password
+            };
+            var config = {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            };
+            var httpObj = new HttpService("brainbout");
+            httpObj.post("j_spring_security_check", data, config).then(function(jsonResp){
+                httpObj.get('userinfo').then(function(response) {
+                    if(jsonResp.userStatus == 'submitted') {
+                        $state.transitionTo("finalScreen");
+                    } else {
+                        putUserInfo(response);
+                        putCompInfo(response);
+                        $state.transitionTo("introduction");
+                    }
+                });
+            });
+        };
+
+        function handleSubmitTemp() {
             var obj = $cookies.get('compinfo');
             var data = {
                 name: vm.title,
@@ -94,13 +116,20 @@
             });
         }
 
-        function putUserInfo() {
+        function putUserInfo(data) {
             var obj = new Object();
-            obj.name=vm.title;
-            obj.email=vm.email;
-            $rootScope.username = vm.title;
+            obj.name=data.name;
+            obj.email=data.email;
+            $rootScope.username = data.name;
             $cookies.put('userinfo', obj);
-            userService.addUsername(vm.title);
+            userService.addUsername(data.name);
+        }
+
+        function putCompInfo(data) {
+            var obj = new Object();
+            obj.companySeq = data.companySeq;
+            obj.competitionSeq = data.competitionSeq;
+            $cookies.put('compinfo', obj);
         }
 
         function clearCookie() {
