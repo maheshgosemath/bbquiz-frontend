@@ -1,0 +1,32 @@
+<md-content layout-xs="column" layout="column">
+    <div flex-gt-sm="100" class="md-padding">
+        <md-toolbar class="md-warn competition_header">
+            <div class="md-toolbar-tools">
+                <h2 class="md-flex">Leaderboard</h2>
+            </div>
+        </md-toolbar>
+    </div>
+    <div layout="row" layout-xs="column">
+        <md-card class="leader_card">
+            <md-card-content class="leader_card_content">
+                <table md-table>
+                    <thead md-head>
+                    <tr md-row>
+                        <th md-column><span>Name</span></th>
+                        <th md-column md-numeric><span>Score</span></th>
+                    </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="row in vm.leaderboard">
+                        <td md-cell>{{ row.name }}</td>
+                        <td md-cell>{{ row.seq }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="color: rgba(0,0,0,0.54); padding: 20px 0 40px; text-align: center;" ng-show="vm.leaderboard.length < 1">
+                    <div style="padding: 10px;">There is no data for the leaderboard to display</div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>

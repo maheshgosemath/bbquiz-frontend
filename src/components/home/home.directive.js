@@ -81,7 +81,7 @@
                     } else {
                         putUserInfo(response);
                         putCompInfo(response);
-                        $state.transitionTo("introduction");
+                        $state.transitionTo("dashboard");
                     }
                 });
             });

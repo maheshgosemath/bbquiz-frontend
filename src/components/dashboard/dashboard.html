@@ -1,0 +1,97 @@
+<md-content layout-xs="column" layout="row">
+    <div flex-gt-sm="80" class="md-padding">
+        <md-toolbar class="md-warn competition_header">
+            <div class="md-toolbar-tools">
+                <h2 class="md-flex">Running competitions</h2>
+            </div>
+        </md-toolbar>
+        <div flex-xs="" flex-gt-xs="80" layout="row" layout-xs="column">
+            <md-card flex-gt-xs="30" ng-repeat="competition in vm.competitionList">
+                <md-card-content>
+                    <img ng-src="../images/competition_logo.png" class="md-card-image competition_logo" alt="Brainbout" width="100">
+                </md-card-content>
+                <md-card-title class="P8 competition_title">
+                    <md-card-title-text>
+                        <span class="md-headline">
+                            <div class="headline_text">
+                                {{ competition.competitionVO.competitionName }}
+                            </div>
+                            <div class="event_participated" ng-if="competition.userStatus == 'submitted' || competition.userStatus == 'PARTICIPATED'">
+                                <md-icon md-svg-src="../../images/participated.svg"></md-icon>
+                            </div>
+                        </span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content class="P8" style="font-size: 13px">
+                    <div class="event_timer">
+                        <md-icon md-svg-src="../../images/timer.svg"></md-icon>:&nbsp;
+                        <timer countdown="competition.competitionVO.timeLeft" max-time-unit="'day'" interval="1000">
+                            {{days}}days : {{hours}}Hours : {{minutes}}Mins : {{seconds}}Sec
+                        </timer>
+                    </div>
+                    <div class="event_participant">
+                        <md-icon md-svg-src="../../images/participant.svg"></md-icon>: {{ competition.competitionVO.participants }} participation(s)
+                    </div>
+                    <div class="time_left">
+                        <div class="FL">Your status: &nbsp;</div>
+                        <div class="FL" ng-switch on="competition.userStatus">
+                            <div ng-switch-when="submitted">
+                                Submitted
+                            </div>
+                            <div ng-switch-when="PARTICIPATED">
+                                {{ userTimeLeft }} mins left
+                            </div>
+                            <div ng-switch-when="NP">
+                                Not participated
+                            </div>
+                            <div ng-switch-default>
+                                {{ --- }}
+                            </div>
+                        </div>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start" class="action_group">
+                    <div class="FL" ng-switch on="competition.userStatus">
+                        <div ng-switch-when="submitted">
+                            <md-button class="action_btn" ng-click="vm.show_score(competition.competitionVO.competitionSeq)">My score</md-button>
+                        </div>
+                        <div ng-switch-default>
+                            <md-button class="action_btn" ng-click="vm.enter_quiz(competition.competitionVO.competitionSeq, competition.userStatus)">Enter</md-button>
+                        </div>
+                    </div>
+                    <md-button class="action_btn" ng-click="vm.show_leaderboard(competition.competitionVO.competitionSeq)">Leaderboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+    <div flex-gt-sm="20" class="md-padding">
+        <md-toolbar class="md-warn competition_header">
+            <div class="md-toolbar-tools">
+                <h2 class="md-flex">Leaderboard</h2>
+            </div>
+        </md-toolbar>
+        <div layout="row" layout-xs="column">
+            <md-card class="leader_card">
+                <md-card-content class="leader_card_content">
+                    <table md-table>
+                        <thead md-head>
+                        <tr md-row>
+                            <th md-column><span>Name</span></th>
+                            <th md-column md-numeric><span>Score</span></th>
+                        </tr>
+                        </thead>
+                        <tbody md-body>
+                        <tr md-row ng-repeat="row in vm.leaderboard">
+                            <td md-cell>{{ row.name }}</td>
+                            <td md-cell>{{ row.score }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="color: rgba(0,0,0,0.54); padding: 20px 0 40px; text-align: center;" ng-show="vm.leaderboard.length < 1">
+                        <div style="padding: 10px;">There is no data for the leaderboard to display</div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</md-content>

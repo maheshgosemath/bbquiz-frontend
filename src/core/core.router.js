@@ -42,8 +42,15 @@
             .state('finalScreen', {
                 url: '/finalScreen',
                 template: '<tmpl-final-screen></tmpl-final-screen>'
+            })
+            .state('dashboard', {
+                url: '/dashboard',
+                template: '<tmpl-dashboard></tmpl-dashboard>'
+            }).
+            state('leaderboard', {
+                url: '/leaderboard',
+                template: '<tmpl-leaderboard></tmpl-leaderboard>'
             });
-
 
     }
 })();

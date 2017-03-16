@@ -13,7 +13,9 @@
         'app.question1',
         'app.finalScreen',
         'app.register',
-        'app.error'
+        'app.error',
+        'app.dashboard',
+        'app.leaderboard'
 
     ]).factory('userService', function() {
         var username;
