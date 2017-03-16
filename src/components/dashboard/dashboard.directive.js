@@ -30,6 +30,7 @@
     /* @ngInject */
     function ControllerFunction($state, HttpService, $cookies) {
         var vm = this;
+        clearCookies();
 
         var compObj = $cookies.get('compinfo');
         var userObj = $cookies.get('userinfo');
@@ -73,6 +74,13 @@
             var compObj = $cookies.get('compinfo');
             compObj.competitionSeq = competitionSeq;
             $cookies.put('compinfo', compObj);
+        }
+
+        function clearCookies() {
+            $cookies.remove('pointer');
+            $cookies.remove('submissionResult');
+            $cookies.remove('useranswer');
+            $cookies.remove('quizList');
         }
     }
 })();
