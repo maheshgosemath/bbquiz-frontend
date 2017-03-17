@@ -39,22 +39,33 @@
                 url: '/register',
                 template: '<tmpl-register></tmpl-register>'
             })
+
             .state('finalScreen', {
                 url: '/finalScreen',
                 template: '<tmpl-final-screen></tmpl-final-screen>'
             })
+
             .state('dashboard', {
                 url: '/dashboard',
                 template: '<tmpl-dashboard></tmpl-dashboard>'
-            }).
-            state('leaderboard', {
+            })
+
+            .state('leaderboard', {
                 url: '/leaderboard',
                 template: '<tmpl-leaderboard></tmpl-leaderboard>'
-            }).
-            state('verify', {
+            })
+
+            .state('player', {
+                url: '/player',
+                template: '<tmpl-player></tmpl-player>'
+            })
+
+
+            .state('verify', {
                 url: '/verify/:token',
                 template: '<tmpl-verify></tmpl-verify>'
             });
+
 
     }
 })();
