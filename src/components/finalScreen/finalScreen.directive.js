@@ -41,7 +41,7 @@
         }
 
         vm.name = userObj.name;
-        if(obj && obj.score) {
+        if(obj && typeof obj.score != 'undefined') {
             vm.score = obj.score;
             vm.url= 'http://brainbout.theuniquemedia.in/brainbout/app?token=' + obj.token;
             paintResponse();
@@ -55,7 +55,9 @@
                 vm.score = response.score;
                 vm.url= 'http://brainbout.theuniquemedia.in/brainbout/app?token=' + response.token;
                 vm.optionList = response.quizOptionVOList;
-                paintResponse();
+                if(vm.optionList) {
+                    paintResponse();
+                }
             });
         }
 

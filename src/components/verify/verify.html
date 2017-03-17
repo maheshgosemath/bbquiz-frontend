@@ -1,0 +1,33 @@
+<md-content layout-xs="column" layout="row">
+    <div flex-gt-sm="80" class="md-padding">
+        <md-card  ng-if="vm.status == 'success'">
+            <md-card-content>
+                <div ng-if="vm.status == 'success'">
+                    <p>
+                        Registration verified successfully.
+                        <a href="javascript:void(0)" ng-click="vm.gotoLogin()">Click here</a> to login.
+                    </p>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card ng-if="vm.status == 'invalid'">
+            <md-card-content>
+                <div>
+                    <p>
+                        Token is invalid. Please contact support team for help.
+                    </p>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card ng-if="vm.status == 'verified'">
+            <md-card-content>
+                <div>
+                    <p>
+                        Account is already verified.
+                        <a href="javascript:void(0)" ng-click="vm.gotoLogin()">Click here</a> to login.
+                    </p>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>

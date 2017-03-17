@@ -13,7 +13,10 @@
         'app.question1',
         'app.finalScreen',
         'app.register',
-        'app.error'
+        'app.error',
+        'app.dashboard',
+        'app.leaderboard',
+        'app.verify',
 
     ]).factory('userService', function() {
         var username;

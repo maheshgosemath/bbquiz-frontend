@@ -26,8 +26,12 @@
             }
 
             function makeRequestFailed(response) {
-                var errMsg = "Some problem in server, try reloading the page. If the issue still persist contact admin.";
-                return $q.reject("Error#" + response.status + ": " + errMsg);
+                if(response.status == 401) {
+                    alert("Login failed or session expired. Please login again.")
+                } else {
+                    var errMsg = "Some problem in server, try reloading the page. If the issue still persist contact admin.";
+                    return $q.reject("Error#" + response.status + ": " + errMsg);
+                }
             }
 
             HttpService.prototype.get = function (url, data) {
@@ -37,6 +41,10 @@
             HttpService.prototype.post = function (url, params) {
                 var self = this;
                 return $http.post(apiRoot + self.apiModule + "/" + url, params).then(makeRequestSuccess, makeRequestFailed);
+            };
+            HttpService.prototype.post = function (url, params, config) {
+                var self = this;
+                return $http.post(apiRoot + self.apiModule + "/" + url, params, config).then(makeRequestSuccess, makeRequestFailed);
             };
             HttpService.prototype.delete = function (url) {
                 var self = this;

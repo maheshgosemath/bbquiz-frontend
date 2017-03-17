@@ -16,12 +16,12 @@
 
         $stateProvider
             .state('home', {
-                url: '/ref/:ref',
+                url: '/',
                 template: '<tmpl-home></tmpl-home>'
             })
 
             .state('error', {
-                url: '/',
+                url: '/error',
                 template: '<tmpl-error></tmpl-error>'
             })
 
@@ -42,8 +42,19 @@
             .state('finalScreen', {
                 url: '/finalScreen',
                 template: '<tmpl-final-screen></tmpl-final-screen>'
+            })
+            .state('dashboard', {
+                url: '/dashboard',
+                template: '<tmpl-dashboard></tmpl-dashboard>'
+            }).
+            state('leaderboard', {
+                url: '/leaderboard',
+                template: '<tmpl-leaderboard></tmpl-leaderboard>'
+            }).
+            state('verify', {
+                url: '/verify/:token',
+                template: '<tmpl-verify></tmpl-verify>'
             });
-
 
     }
 })();
