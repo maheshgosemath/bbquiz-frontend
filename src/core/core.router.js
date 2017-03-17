@@ -50,6 +50,10 @@
             state('leaderboard', {
                 url: '/leaderboard',
                 template: '<tmpl-leaderboard></tmpl-leaderboard>'
+            }).
+            state('verify', {
+                url: '/verify/:token',
+                template: '<tmpl-verify></tmpl-verify>'
             });
 
     }

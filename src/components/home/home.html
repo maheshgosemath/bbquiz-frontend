@@ -12,6 +12,7 @@
                              alt="Washed Out"/>
                     </div>
                     <md-card-content>
+                        <div layout-align="center" ng-show="vm.status == 1" class="warn_message">{{ vm.message }}</div>
                         <form data-ng-submit="vm.handleSubmit()" id="login_form">
 
 

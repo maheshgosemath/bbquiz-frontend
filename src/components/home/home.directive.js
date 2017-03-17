@@ -35,6 +35,7 @@
         vm.handleSubmit = handleSubmit;
         $state.username='';
         var ref;
+        vm.status == -1;
 
         clearCookie();
 
@@ -74,16 +75,30 @@
                 }
             };
             var httpObj = new HttpService("brainbout");
-            httpObj.post("j_spring_security_check", data, config).then(function(jsonResp){
-                httpObj.get('userinfo').then(function(response) {
-                    if(jsonResp.userStatus == 'submitted') {
-                        $state.transitionTo("finalScreen");
+            httpObj.get('validateuser', {email: vm.email}).then(function(response) {
+                if(response.status == 'VALID_EMAIL') {
+                    httpObj.post("j_spring_security_check", data, config).then(function(jsonResp){
+                        httpObj.get('userinfo').then(function(response) {
+                            if(jsonResp.userStatus == 'submitted') {
+                                $state.transitionTo("finalScreen");
+                            } else {
+                                putUserInfo(response);
+                                putCompInfo(response);
+                                $state.transitionTo("dashboard");
+                            }
+                        });
+                    });
+                } else {
+                    if(response.status == 'VERIFY_PENDING') {
+                        vm.status = 1;
+                        vm.message = 'Account not verified. Please verify account to login';
                     } else {
-                        putUserInfo(response);
-                        putCompInfo(response);
-                        $state.transitionTo("dashboard");
+                        if(response.status == 'INVALID_EMAIL') {
+                            vm.status = 1;
+                            vm.message = 'Invalid login details';
+                        }
                     }
-                });
+                }
             });
         };
 

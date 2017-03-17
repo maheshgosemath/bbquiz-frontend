@@ -17,6 +17,8 @@
                     </md-card-title>
 
                     <md-card-content>
+                        <div layout-align="center" ng-show="vm.success == 1" class="success_message">{{ vm.message }}</div>
+                        <div layout-align="center" ng-show="vm.success == 0" class="warn_message">{{ vm.message }}</div>
                         <form name="registrationForm" ng-submit="registrationForm.$valid && vm.handleSubmit()" novalidate>
 
                             <div layout-gt-sm="row">

@@ -45,12 +45,13 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$scope', 'errorService'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$scope', 'errorService', '$mdToast'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $scope, errorService) {
+    function ControllerFunction($state, HttpService, $scope, errorService, $mdToast) {
 
         var vm = this;
+        vm.success = -1;
         vm.gotoLogin = function () {
             $state.transitionTo('home');
         };
@@ -61,16 +62,28 @@
         });
 
         vm.handleSubmit = function() {
+            vm.success = -1;
             var data = JSON.stringify(vm.userData);
             var httpObj = new HttpService("brainbout");
             httpObj.post("signup", data).then(function(response) {
                 if(response.status == 'success') {
-                    alert("Registration successful");
-                    $state.transitionTo('home');
+                    vm.userData={};
+                    vm.success = 1;
+                    vm.message = 'Registration successful. Please check your email for verification link.';
                 } else {
-                    alert(response.msg);
+                    vm.success = 0;
+                    vm.message = 'Something went wrong. Please try again.';
                 }
             });
+        };
+
+        function showMessage(msg) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(msg)
+                    .position('top center')
+                    .hideDelay(3000)
+            );
         }
     }
 })();
