@@ -8,8 +8,10 @@
         <md-card-title class="md-accent" layout="row" layout-xs="column" layout-align="end">
             <span class="md-headline" flex  class="md-accent">{{vm.question}}</span>
 
-
         </md-card-title>
+        <md-content layout="column" class="quiz_image">
+            <img ng-if="vm.quizImg" src="/brainbout/quizimages/{{vm.quizImg}}"/>
+        </md-content>
 
         <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
 

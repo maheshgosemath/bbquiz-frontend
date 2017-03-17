@@ -128,6 +128,7 @@
         vm.question = quizList[pointer].quizTitle;
         var optionList = quizList[pointer].optionList;
         vm.quizSeq = quizList[pointer].quizSeq;
+        vm.quizImg = quizList[pointer].quizImg;
 
         var tempList=new Array();
         vm.optionLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
