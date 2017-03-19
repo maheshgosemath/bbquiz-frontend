@@ -12,13 +12,13 @@
                              alt="Washed Out"/>
 
                     </div>
-                    <md-card-title  layout="row" layout-align="center">
+                    <md-card-title  layout="row" layout-align="center" id="registration_header">
                          <span class="md-heading">REGISTRATION FORM</span>
                     </md-card-title>
 
                     <md-card-content>
-                        <div layout-align="center" ng-show="vm.success == 1" class="success_message">{{ vm.message }}</div>
-                        <div layout-align="center" ng-show="vm.success == 0" class="warn_message">{{ vm.message }}</div>
+                        <div layout-align="center" ng-show="vm.success == 1" class="message success_message">{{ vm.message }}</div>
+                        <div layout-align="center" ng-show="vm.success == 0" class="message warn_message">{{ vm.message }}</div>
                         <form name="registrationForm" ng-submit="registrationForm.$valid && vm.handleSubmit()" novalidate>
 
                             <div layout-gt-sm="row">
@@ -55,16 +55,17 @@
 
                             <div>
                             <md-input-container class="md-block">
-                                <input ng-model="vm.userData.userVO.phoneNo" type="text" placeholder="Phone Number" ng-required="true" name="phoneNo">
+                                <input ng-model="vm.userData.userVO.phoneNo" type="text" placeholder="Phone Number" name="phoneNo">
                             </md-input-container>
                             </div>
 
                             <div>
                                 <md-input-container class="md-block">
-                                    <input ng-model="vm.userData.password" type="password" placeholder="Password" ng-required="true"
+                                    <input ng-model="vm.userData.password" type="password" placeholder="Password" required
                                            name="password"
                                            ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
-                                    <div ng-messages="registerForm.password.$error">
+                                    <div ng-messages="registrationForm.password.$error" ng-messages-multiple>
+                                        <div ng-message="required">This is required</div>
                                         <div ng-message="pattern">Password should be atleast 8 characters long
                                             and should contain one number,one character and one special
                                             character
@@ -74,10 +75,10 @@
 
                                 <md-input-container class="md-block">
                                     <input ng-model="vm.userData.passwordConfirm" type="password" placeholder="Confirm Password" ng-required="true"
-                                           name="condirmPassword" password-verify="{{vm.userData.password}}">
-                                    <div ng-messages="registerForm.password.$error">
-                                        <div ng-message="password-verify">Password and confirm password should match
-                                        </div>
+                                           name="confirmPassword" password-verify="{{vm.userData.password}}">
+                                    <div ng-messages="registrationForm.confirmPassword.$error" ng-messages-multiple>
+                                        <div ng-message="required">This is required</div>
+                                        <div ng-message="passwordVerify">Password and confirm password should match</div>
                                     </div>
                                 </md-input-container>
                             </div>

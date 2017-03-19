@@ -14,20 +14,15 @@
         </md-content>
 
         <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
-
             <md-list ng-cloak="">
-
                 <md-subheader class="md-no-sticky">Please select one answer</md-subheader>
                 <md-radio-group ng-model="vm.optionSeq">
-                    <md-list-item ng-repeat="label in vm.options" ng-click="vm.optionSeq = label.seq"
-                                  >
-
+                    <md-list-item ng-repeat="label in vm.options" ng-click="vm.optionSeq = label.seq">
                         <md-divider></md-divider>
                             <p>{{vm.optionLabels[$index]}}. {{ label.name }}</p>
                             <md-radio-button class="md-secondary" ng-value="label.seq"
                                              aria-label="label.name"></md-radio-button>
                         <md-divider></md-divider>
-
                     </md-list-item>
                 </md-radio-group>
             </md-list>

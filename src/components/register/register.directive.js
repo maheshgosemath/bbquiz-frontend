@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('app.register', ['ngCookies'])
+    angular.module('app.register', ['ngCookies', 'ngMessages', 'duScroll'])
         .directive('tmplRegister', directiveFunction)
         .controller('RegisterController', ControllerFunction)
         .directive('passwordVerify', function() {
@@ -45,10 +45,10 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$scope', 'errorService', '$mdToast'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$scope', 'errorService', '$mdToast', '$document'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $scope, errorService, $mdToast) {
+    function ControllerFunction($state, HttpService, $scope, errorService, $mdToast, $document) {
 
         var vm = this;
         vm.success = -1;
@@ -66,10 +66,13 @@
             var data = JSON.stringify(vm.userData);
             var httpObj = new HttpService("brainbout");
             httpObj.post("signup", data).then(function(response) {
+                scrollToMessage();
                 if(response.status == 'success') {
+                    $scope.registrationForm.$setPristine();
+                    $scope.registrationForm.$setUntouched();
                     vm.userData={};
                     vm.success = 1;
-                    vm.message = 'Registration successful. Please check your email for verification link.';
+                    vm.message = 'Registration successful. Please check your mail for verification link.';
                 } else {
                     vm.success = 0;
                     vm.message = 'Something went wrong. Please try again.';
@@ -84,6 +87,11 @@
                     .position('top center')
                     .hideDelay(3000)
             );
+        }
+
+        function scrollToMessage() {
+            var someElement = angular.element(document.getElementById('registration_header'));
+            $document.scrollToElement(someElement, 30, 2000);
         }
     }
 })();

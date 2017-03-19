@@ -1,12 +1,12 @@
 <md-content layout-xs="column" layout="row">
-    <div flex-gt-sm="80" class="md-padding">
+    <div flex-gt-sm="70" class="md-padding">
         <md-toolbar class="md-warn competition_header">
             <div class="md-toolbar-tools">
                 <h2 class="md-flex">Running competitions</h2>
             </div>
         </md-toolbar>
-        <div flex-xs="" flex-gt-xs="80" layout="row" layout-xs="column">
-            <md-card flex-gt-xs="30" ng-repeat="competition in vm.competitionList">
+        <div flex-xs="" flex-gt-xs="100" layout="row" layout-xs="column">
+            <md-card class="event_card" flex-gt-xs="30" ng-repeat="competition in vm.competitionList">
                 <md-card-content>
                     <img ng-src="../images/competition_logo.png" class="md-card-image competition_logo" alt="Brainbout" width="100">
                 </md-card-content>
@@ -64,7 +64,7 @@
             </md-card>
         </div>
     </div>
-    <div flex-gt-sm="20" class="md-padding">
+    <div flex-gt-sm="30" class="md-padding">
         <md-toolbar class="md-warn competition_header">
             <div class="md-toolbar-tools">
                 <h2 class="md-flex">Leaderboard</h2>
@@ -76,12 +76,14 @@
                     <table md-table>
                         <thead md-head>
                         <tr md-row>
+                            <th md-column><span>Rank</span></th>
                             <th md-column><span>Name</span></th>
                             <th md-column md-numeric><span>Score</span></th>
                         </tr>
                         </thead>
                         <tbody md-body>
                         <tr md-row ng-repeat="row in vm.leaderboard">
+                            <td md-cell>{{ $index + 1 }}</td>
                             <td md-cell>{{ row.name }}</td>
                             <td md-cell>{{ row.score }}</td>
                         </tr>
