@@ -36,7 +36,7 @@
                             <div layout="row">
                              <md-input-container class="md-block" flex="100">
                                 <label>Company</label>
-                                <md-select ng-model="vm.userData.companySeq" ng-required="true" name="company">
+                                <md-select ng-model="vm.userData.companySeq" ng-required="true" name="company" ng-change="vm.changeCompany()">
                                     <md-option ng-value="company.corporateSeq" ng-repeat="company in vm.companyList">
                                         <em>{{ company.corporateName }}</em>
                                     </md-option>
@@ -45,6 +45,16 @@
 
                             </div>
 
+                            <div layout="row" ng-hide="vm.userData.companySeq == ''">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>Location</label>
+                                    <md-select ng-model="vm.userData.locationSeq" ng-required="true" name="location">
+                                        <md-option ng-value="location.seq" ng-repeat="location in vm.locationList">
+                                            <em>{{ location.name }}</em>
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
 
                             <div>
                                 <md-input-container class="md-block">
@@ -81,6 +91,18 @@
                                         <div ng-message="passwordVerify">Password and confirm password should match</div>
                                     </div>
                                 </md-input-container>
+                            </div>
+
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>Your interests</label>
+                                    <md-select ng-model="vm.userData.genreSeq" ng-required="true" name="genre" multiple="{{false}}" ng-change="vm.changeGenre()">
+                                        <md-option ng-value="genre.seq" ng-repeat="genre in vm.genreList">
+                                            <em>{{ genre.name }}</em>
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
                             </div>
 
 

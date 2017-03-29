@@ -61,8 +61,13 @@
             vm.companyList = response.companyList;
         });
 
+        httpObj.get("genredetails").then(function(response) {
+            vm.genreList = response.genredetails;
+        });
+
         vm.handleSubmit = function() {
             vm.success = -1;
+            console.log(vm.userData.interests);
             var data = JSON.stringify(vm.userData);
             var httpObj = new HttpService("brainbout");
             httpObj.post("signup", data).then(function(response) {
@@ -79,6 +84,18 @@
                 }
             });
         };
+
+        vm.changeCompany = function() {
+            var data = {companySeq: vm.userData.companySeq}
+            var httpObj = new HttpService("brainbout");
+            httpObj.get("companylocations", data).then(function(response) {
+                vm.locationList = response.companylocations;
+            });
+        }
+
+        vm.changeGenre = function() {
+            console.log(vm.userData.interests);
+        }
 
         function showMessage(msg) {
             $mdToast.show(
