@@ -38,8 +38,17 @@
         };
         var httpObj = new HttpService("brainbout");
         httpObj.get("competitionleaderboard", data).then(function(response){
-            console.log(response);
             vm.leaderboard = response.leaderboard
+        });
+
+        var userObj = $cookies.get('userinfo');
+        var data = {
+            userId: userObj.email,
+            companySeq: compObj.companySeq,
+            competitionSeq: compObj.competitionSeq
+        };
+        httpObj.get("competitionleaderboardlocation", data).then(function(response){
+            vm.locationleaderboard = response.leaderboard
         });
     }
 })();

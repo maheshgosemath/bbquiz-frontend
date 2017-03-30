@@ -1,5 +1,6 @@
 md-toast {
     left: calc(50vw - 150px);
 }
-.success_message{background-color: #00C851;padding: 8px;font-size: 13px;}
-.warn_message{background-color: #ffbb33; padding: 8px; font-size: 13px;}
+.message{font-size:14px; padding: 8px; border-radius: 3px;font-family: 'Open Sans',sans-serif;}
+.success_message{background-color: #00C851;}
+.warn_message{background-color: #ffbb33;}

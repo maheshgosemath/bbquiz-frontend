@@ -17,8 +17,16 @@
 .event_participated{float: right;}
 .event_participant md-icon{margin-bottom: 2px;}
 .FL{float:left;}
-.leader_card{padding: 0;margin: 0;width: 100%;}
+.leader_card{padding: 0;/*margin: 0;*/width: 100%;}
 .leader_card_content{padding:4px;}
 .leader_card tbody {font-size: 14px;text-align: center;}
 .leader_card table{width: 100% !important;}
 .leader_card md-column{text-align: center;padding: 8px;}
+.leader_card table td{padding: 8px; font-family: 'Open Sans', sans-serif;}
+.event_card{margin: 16px;}
+.full_layout{width:100%;}
+.competition_header{min-height: 0px !important;max-height: 40px;font-size: 16px !important;}
+.competition_header_text{font-size: 16px; font-family: 'Open Sans', sans-serif;}
+.event_status{font-family: 'Open Sans', sans-serif;font-size: 15px;}
+.event_status_count{padding: 0px 8px 2px;background-color: #e24949;color: #e1e1e1;border-radius: 4px;font-size: 13px;}
+

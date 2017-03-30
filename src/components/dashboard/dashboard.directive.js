@@ -1,3 +1,4 @@
+
 (function () {
 
     'use strict';
@@ -30,6 +31,7 @@
     /* @ngInject */
     function ControllerFunction($state, HttpService, $cookies) {
         var vm = this;
+        vm.loaded = false;
         clearCookies();
 
         var compObj = $cookies.get('compinfo');
@@ -49,6 +51,7 @@
         }
         httpObj.get("companyleaderboard", data).then(function(response){
             vm.leaderboard = response.leaderboard
+            vm.loaded = true;
         });
 
         vm.show_score = function(competitionSeq) {

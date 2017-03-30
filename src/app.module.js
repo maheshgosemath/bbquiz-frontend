@@ -16,8 +16,7 @@
         'app.error',
         'app.dashboard',
         'app.leaderboard',
-        'app.verify',
-        'app.player',
+        'app.verify'
 
     ]).factory('userService', function() {
         var username;

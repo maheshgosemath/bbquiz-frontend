@@ -25,9 +25,9 @@
         });
         $rootScope.$watch("quizTimer", function(newValue, oldValue) {
             if(oldValue !== newValue && newValue) {
-                vm.quizTimer = newValue;
                 $scope.$broadcast('timer-add-cd-seconds', newValue * 60);
                 $scope.$broadcast('timer-start');
+                vm.quizTimer = newValue;
                 $scope.timerRunning = true;
             }
         });

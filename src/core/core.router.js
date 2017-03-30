@@ -55,12 +55,6 @@
                 template: '<tmpl-leaderboard></tmpl-leaderboard>'
             })
 
-            .state('player', {
-                url: '/player',
-                template: '<tmpl-player></tmpl-player>'
-            })
-
-
             .state('verify', {
                 url: '/verify/:token',
                 template: '<tmpl-verify></tmpl-verify>'

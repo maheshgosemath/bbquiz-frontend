@@ -1,69 +1,78 @@
-<md-card>
-    <md-card-title>
-        <md-card-title-text>
-            <div class="md-display-1" layout="row" layout-align="center">
-                {{ vm.name }}
-            </div>
-            <div class="md-subheader" layout="row" layout-align="center">
-                <h3>YOU SCORED</h3>
-            </div>
-            <div class="md-display-3" layout="row" layout-align="center">
-                {{ vm.score }}
-            </div>
-        </md-card-title-text>
-    </md-card-title>
-
-
-    <md-card-content layout="row" layout-align="center">
-        <div>
-            <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column" layout="column">
-                <div layout="row" layout-align="center">
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <span class="md-subheader" layout="row" layout-align="center">   POST IT ON FACEBOOK</span>
-                        <md-button class="md-raised md-primary" ng-click="vm.fbpost()"
-                                   aria-label="Use Android">
-                            <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
-                            &nbsp;Share
-                        </md-button>
+<div layout="row" layout-align="center">
+    <div flex-xs flex-gt-xs="60" layout="column">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="md-display-1" layout="row" layout-align="center">
+                        {{ vm.name }}
                     </div>
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <span class="md-subheader" layout="row" layout-align="center">  LIKE US ON FACEBOOK</span>
-                        <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
-                                   aria-label="Use Android">
-                            <md-icon md-svg-src="../../images/thumb-up-button.svg"></md-icon>
-                            &nbsp; Like
+                    <div class="md-subheader" layout="row" layout-align="center">
+                        <h3>YOU SCORED</h3>
+                    </div>
+                    <div class="md-display-3" layout="row" layout-align="center">
+                        {{ vm.score }}
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+
+
+            <md-card-content layout="row" layout-align="center">
+                <div>
+                    <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column"
+                                layout="column">
+                        <div layout="row" layout-align="center">
+                            <div flex-xs flex-gt-xs="50" layout="column">
+                                <span class="md-subheader" layout="row"
+                                      layout-align="center">   POST IT ON FACEBOOK</span>
+                                <md-button class="md-raised md-primary" ng-click="vm.fbpost()"
+                                           aria-label="Use Android">
+                                    <md-icon md-svg-src="../../images/facebook-box.svg"></md-icon>
+                                    &nbsp;Share
+                                </md-button>
+                            </div>
+                            <div flex-xs flex-gt-xs="50" layout="column">
+                                <span class="md-subheader" layout="row"
+                                      layout-align="center">  LIKE US ON FACEBOOK</span>
+                                <md-button class="md-raised md-primary" href="http://www.facebook.com" target="_blank"
+                                           aria-label="Use Android">
+                                    <md-icon md-svg-src="../../images/thumb-up-button.svg"></md-icon>
+                                    &nbsp; Like
+                                </md-button>
+                            </div>
+                        </div>
+                        <br>
+                        <md-list ng-cloak="" ng-if="vm.optionList.length > 0">
+
+                            <span class="md-subheader" layout="row" layout-align="center"></span>
+                            <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
+                            <div ng-repeat="ques in vm.optionList">
+                                <small>
+                                    <md-icon ng-if="ques.isCorrect == 'Y'"
+                                             md-svg-src="../../images/check.svg"></md-icon>
+                                    <md-icon ng-if="ques.isCorrect == 'N'" md-svg-src="../../images/close.svg"
+                                             class="md-default-theme"></md-icon>
+                                    {{ques.quizTitle }}
+                                </small>
+                            </div>
+                        </md-list>
+                    </md-content>
+
+
+                    <div layout="row" layout-align="center">
+                        <h3>Participate in WinKindle's New Competition</h3>
+                    </div>
+
+
+                    <div layout="row" layout-align="center">
+                        <md-button ng-click="vm.newQuiz()" class="md-raised md-accent" aria-label="Use Android">
+                            PARTICIPATE NOW
                         </md-button>
                     </div>
                 </div>
-                <br>
-                <md-list ng-cloak="" ng-if="vm.optionList.length > 0">
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center">
 
-                    <span class="md-subheader" layout="row" layout-align="center"></span>
-                    <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
-                    <div ng-repeat="ques in vm.optionList">
-                        <p>
-                            <md-icon ng-if="ques.isCorrect == 'Y'" md-svg-src="../../images/check.svg"></md-icon>
-                            <md-icon ng-if="ques.isCorrect == 'N'" md-svg-src="../../images/close.svg" class="md-default-theme"></md-icon>
-                            {{ques.quizTitle }}
-                        </p>
-                    </div>
-                </md-list>
-            </md-content>
-
-
-            <div layout="row" layout-align="center">
-                <h3>Participate in WinKindle's New Competition</h3>
-            </div>
-
-
-            <div layout="row" layout-align="center">
-                <md-button ng-click="vm.newQuiz()" class="md-raised md-accent" aria-label="Use Android">
-                    PARTICIPATE NOW
-                </md-button>
-            </div>
-        </div>
-    </md-card-content>
-    <md-card-actions layout="row" layout-align="center">
-
-    </md-card-actions>
-</md-card>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

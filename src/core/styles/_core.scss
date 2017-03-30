@@ -5,7 +5,10 @@
 // Note: Don't put component styles here. Put them in the appropriate component folder.
 
 body, tmpl-approot{
-
+    background: url(../../images/bg.jpg) no-repeat;
+    background-size:cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 ul {
