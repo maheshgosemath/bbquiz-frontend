@@ -62,7 +62,7 @@
         });
 
         httpObj.get("genredetails").then(function(response) {
-            vm.genreList = response.genredetails;
+            vm.genreList = response.genredetails.slice(0, -1); ;
         });
 
         vm.handleSubmit = function() {

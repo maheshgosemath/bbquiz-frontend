@@ -66,9 +66,11 @@
         }
 
         vm.newQuiz = function(){
-            $state.transitionTo('home');
+        //    $state.transitionTo('home');
         };
-
+        vm.gotohome = function(){
+            $state.transitionTo('dashboard');
+        };
         vm.fbpost = function() {
             var url="https://facebook.com/sharer.php?p[url]=" + encodeURIComponent(vm.url);
             window.open(url, "newWindow", "status = 1, height = 500, width = 500, resizable = 0");

@@ -4,16 +4,15 @@
 
         <div layout="row" layout-align="center">
             <div flex-xs flex-gt-xs="35" layout="column">
-                <md-card class="transbg">
 
-                </md-card>
                 <md-card>
 
-                    <div layout="row" layout-align="center">
-                        <img src="../../images/competition_logo.png" flex-sm flex-gt-sm="30" class="img-responsive"
+                        <img src="../../images/competition_logo.png" flex-sm flex-gt-sm="30" layout="column" class="img-responsive"
                              alt="Washed Out"/>
-                    </div>
+
+
                     <md-card-content>
+
                         <div layout-align="center" ng-show="vm.status == 1" class="warn_message">{{ vm.message }}</div>
                         <form data-ng-submit="vm.handleSubmit()" id="login_form">
 
@@ -39,7 +38,8 @@
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="center center">
                         <span class="md-subheader">Not registered?</span>
-                        <md-button type="button" class="md-primary" aria-label="Use Android" ng-click="vm.gotoRegister()">
+                        <md-button type="button" class="md-primary" aria-label="Use Android"
+                                   ng-click="vm.gotoRegister()">
                             SIGN UP
                         </md-button>
                     </md-card-actions>
