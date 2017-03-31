@@ -46,16 +46,16 @@
             .iconSet('navigation', 'images/navigation-icons.svg', 24);
 
         $mdThemingProvider.definePalette('app-blue', $mdThemingProvider.extendPalette('blue', {
-            '50': '#DCEFFF',
-            '100': '#AAD1F9',
-            '200': '#7BB8F5',
-            '300': '#4C9EF1',
-            '400': '#1C85ED',
-            '500': '#106CC8',
-            '600': '#0159A2',
-            '700': '#025EE9',
-            '800': '#014AB6',
-            '900': '#013583',
+            '50': '#efefef',
+            '100': '#cccccc',
+            '200': '#bababa',
+            '300': '#999999',
+            '400': '#7b7b7b',
+            '500': '#4c4c4c',
+            '600': '#333333',
+            '700': '#202020',
+            '800': '#0f0f0f',
+            '900': '#010101',
             'contrastDefaultColor': 'light',
             'contrastDarkColors': '50 100 200 A100',
             'contrastStrongLightColors': '300 400 A200 A400'
