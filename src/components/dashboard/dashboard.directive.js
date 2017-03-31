@@ -36,6 +36,10 @@
 
         var compObj = $cookies.get('compinfo');
         var userObj = $cookies.get('userinfo');
+
+        if(!userObj) {
+            $state.transitionTo('home');
+        }
         var data = {
             companySeq: compObj.companySeq,
             email: userObj.email

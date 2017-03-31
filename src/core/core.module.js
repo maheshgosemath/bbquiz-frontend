@@ -26,7 +26,7 @@
             }
 
             function makeRequestFailed(response) {
-                if(response.status == 401) {
+                if(response.status == 401 || response.status == 302) {
                     alert("Login failed or session expired. Please login again.")
                 } else {
                     var errMsg = "Some problem in server, try reloading the page. If the issue still persist contact admin.";

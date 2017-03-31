@@ -91,12 +91,11 @@
                                     <input ng-model="vm.userData.password" type="password" placeholder="Password"
                                            required
                                            name="password"
-                                           ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/">
+                                           ng-pattern="/^([a-zA-Z0-9_-]){8,}$/">
                                     <div ng-messages="registrationForm.password.$error" ng-messages-multiple>
                                         <div ng-message="required">This is required</div>
                                         <div ng-message="pattern">Password should be atleast 8 characters long
-                                            and should contain one number,one character and one special
-                                            character
+                                            and should contain characters and numbers
                                         </div>
                                     </div>
                                 </md-input-container>
