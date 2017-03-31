@@ -21,6 +21,10 @@
         $rootScope.$watch("username", function(newValue, oldValue) {
             if(oldValue != newValue && newValue != '') {
                 vm.username = newValue;
+            } else {
+                if(newValue == '') {
+                    vm.username = '';
+                }
             }
         });
         $rootScope.$watch("quizTimer", function(newValue, oldValue) {

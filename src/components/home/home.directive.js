@@ -36,29 +36,14 @@
         $state.username='';
         var ref;
         vm.status == -1;
+        $rootScope.username = '';
+        $rootScope.quizTimer = 1;
 
         clearCookie();
 
         vm.gotoRegister = function(){
             $state.transitionTo('register');
         };
-
-        /*var httpObj = new HttpService("brainbout");
-
-        httpObj.get("login", {ref:ref}).then(function(response) {
-            if(response.competitionStatus == 'competition_closed') {
-                errorService.addError('The requested competition is closed now', 'Competition closed');
-                $state.transitionTo('error');
-            }
-            if(response.competitionStatus == 'competition_not_started') {
-                errorService.addError('The requested competition has not started yet', 'Competition not started');
-                $state.transitionTo('error');
-            }
-            var obj = new Object();
-            obj.companySeq = response.companySeq;
-            obj.competitionSeq = response.competitionSeq;
-            $cookies.put('compinfo', obj);
-        });*/
 
         function handleSubmit() {
             var data = {

@@ -25,11 +25,12 @@
         return directive;
     }
 
-    ControllerFunction.$inject = ['$state','HttpService', '$cookieStore'];
+    ControllerFunction.$inject = ['$state','$rootScope', 'HttpService', '$cookieStore'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies) {
+    function ControllerFunction($state, $rootScope, HttpService, $cookies) {
         var vm = this;
+        $rootScope.quizTimer = 1;
 
         var compObj = $cookies.get('compinfo');
         var data = {

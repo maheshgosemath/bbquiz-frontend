@@ -45,16 +45,18 @@
     }
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$scope', 'errorService', '$mdToast', '$document'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$rootScope', '$scope', 'errorService', '$mdToast', '$document'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $scope, errorService, $mdToast, $document) {
+    function ControllerFunction($state, HttpService, $rootScope, $scope, errorService, $mdToast, $document) {
 
         var vm = this;
         vm.success = -1;
         vm.gotoLogin = function () {
             $state.transitionTo('home');
         };
+        $rootScope.username = '';
+        $rootScope.quizTimer = 1;
 
         var httpObj = new HttpService("brainbout");
         httpObj.get("companylist").then(function(response) {
