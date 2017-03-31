@@ -60,7 +60,7 @@
             vm.length = quizList.length;
             paintQuestion(vm,quizList,pointer);
             pointer = pointer + 1;
-            compInterval = setTimeout(submitQuiz, (response.timeLeft * 60000));
+            compInterval = setTimeout(submitQuiz, (response.timeLeft * 1000));
             $rootScope.quizTimer = response.timeLeft;
         });
 

@@ -44,6 +44,9 @@
         var httpObj = new HttpService("brainbout");
         httpObj.post("dashboard", data).then(function(response){
             vm.competitionList = response.dashboard;
+            vm.currentCompetition_length = vm.competitionList.currentCompetitionList.length;
+            vm.upComingCompetition_length = vm.competitionList.upcomingCompetitionList.length;
+            vm.pastCompetition_length = vm.competitionList.pastCompetitionList.length;
         });
 
         data = {

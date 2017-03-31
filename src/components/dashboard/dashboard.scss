@@ -28,5 +28,5 @@
 .competition_header{min-height: 0px !important;max-height: 40px;font-size: 16px !important;}
 .competition_header_text{font-size: 16px; font-family: 'Open Sans', sans-serif;}
 .event_status{font-family: 'Open Sans', sans-serif;font-size: 15px;}
-.event_status_count{padding: 0px 8px 2px;background-color: #e24949;color: #e1e1e1;border-radius: 4px;font-size: 13px;}
-
+.event_status_count{padding: 0px 8px 2px;background-color: #d0cece;color: #757575;border-radius: 4px;font-size: 13px;}
+.md-active .event_status_count{background-color: #e24949;color: #e1e1e1;}
