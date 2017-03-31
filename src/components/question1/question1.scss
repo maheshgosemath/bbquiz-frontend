@@ -43,9 +43,7 @@
 .question1-page{
     md-card.transbg{
         background:transparent;
-        md-subheader{
-            background:transparent;
-        }
+
         md-card-title{
             background: #fff;
         }
@@ -53,6 +51,17 @@
 
     .half-transbg{
         background:rgba(255,255,255,0.8);
+    }
+    .md-subheader{
+        background:transparent;
+    }
+    .btn1{
+        color : rgb(0,0,0);
+        background-color: rgba(255,255,255,255);
+        border-radius: 8px 8px 0 0px;
+        font-size: 16px;
+        margin-bottom:0;
+        padding: 0 10px 0 10px;
     }
 }
 
