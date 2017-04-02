@@ -7,10 +7,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state','$mdDialog','$cookieStore', '$rootScope', '$scope'];
+    ControllerFunction.$inject = ['$state','$mdDialog','$cookieStore', '$rootScope', '$scope', 'HttpService'];
 
     /* @ngInject */
-    function ControllerFunction($state, $mdDialog, $cookieStore, $rootScope, $scope) {
+    function ControllerFunction($state, $mdDialog, $cookieStore, $rootScope, $scope, HttpService) {
 
         var vm = this;
         var userObj = $cookieStore.get('userinfo');
@@ -18,6 +18,7 @@
         if (userObj) {
             vm.username = userObj.name;
         }
+
         $rootScope.$watch("username", function(newValue, oldValue) {
             if(oldValue != newValue && newValue != '') {
                 vm.username = newValue;
@@ -29,10 +30,18 @@
         });
         $rootScope.$watch("quizTimer", function(newValue, oldValue) {
             if(oldValue !== newValue && newValue) {
-                $scope.$broadcast('timer-add-cd-seconds', newValue);
-                $scope.$broadcast('timer-start');
-                vm.quizTimer = newValue;
-                $scope.timerRunning = true;
+                if(newValue == 1) {
+                    vm.quizTimer = 1;
+                    $scope.$broadcast('timer-reset');
+                } else {
+                    vm.quizTimer = newValue;
+                    $scope.$broadcast('timer-reset');
+                    $scope.$broadcast('timer-add-cd-seconds', newValue);
+                    setTimeout(function () {
+                        $scope.timerRunning = true;
+                        $scope.$broadcast('timer-start');
+                    }, 500);
+                }
             }
         });
         $rootScope.$watch("timerStatus", function(newValue, oldValue) {
@@ -40,12 +49,35 @@
                 if(newValue == 'stop') {
                     $scope.$broadcast('timer-stop');
                     $scope.timerRunning = false;
+                    $scope.$broadcast('timer-reset');
                 }
             }
         });
 
         vm.show_dashbaord = function() {
             $state.transitionTo('dashboard');
+        };
+
+        vm.logout = function() {
+            var config = {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            };
+            var httpObj = new HttpService("brainbout");
+            httpObj.post("j_spring_security_logout", {}, config).then(function(jsonResp){
+                clearCookie();
+                $rootScope.username='';
+                $rootScope.quizTimer=1
+                $state.transitionTo('home');
+            });
+        };
+
+        function clearCookie() {
+            $cookieStore.remove('userinfo');
+            $cookieStore.remove('compinfo');
+            $cookieStore.remove('pointer');
+            $cookieStore.remove('submissionResult');
+            $cookieStore.remove('useranswer');
+            $cookieStore.remove('quizList');
         }
     }
 

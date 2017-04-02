@@ -26,10 +26,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore', '$rootScope'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore', '$rootScope', '$scope'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookieStore, $rootScope) {
+    function ControllerFunction($state, HttpService, $cookieStore, $rootScope, $scope) {
         var vm = this;
         vm.index = 1;
         vm.buttonLabel = "NEXT"
@@ -41,28 +41,32 @@
 
         var userObj = $cookieStore.get('userinfo');
         var compObj = $cookieStore.get('compinfo');
-        if(!userObj) {
-            $state.transitionTo("home");
-        }
-        var quizList;
-        init();
 
-        var data = {
-            email: userObj.email,
-            companySeq: compObj.companySeq,
-            competitionSeq: compObj.competitionSeq,
-            quizSeqList: $cookieStore.get('quizList')
-        };
-        var httpObj = new HttpService("brainbout");
-        httpObj.post("quizlist", data).then(function(response) {
-            quizList = response.quizVOList;
-            saveQuizSeqList();
-            vm.length = quizList.length;
-            paintQuestion(vm,quizList,pointer);
-            pointer = pointer + 1;
-            compInterval = setTimeout(submitQuiz, (response.timeLeft * 1000));
-            $rootScope.quizTimer = response.timeLeft;
-        });
+        if(!userObj) {
+            $state.transitionTo('home');
+        }
+
+        var quizList;
+
+        if(userObj && compObj) {
+            init();
+            var data = {
+                email: userObj.email,
+                companySeq: compObj.companySeq,
+                competitionSeq: compObj.competitionSeq,
+                quizSeqList: $cookieStore.get('quizList')
+            };
+            var httpObj = new HttpService("brainbout");
+            httpObj.post("quizlist", data).then(function (response) {
+                quizList = response.quizVOList;
+                saveQuizSeqList();
+                vm.length = quizList.length;
+                paintQuestion(vm, quizList, pointer);
+                pointer = pointer + 1;
+                compInterval = setTimeout(submitQuiz, (response.timeLeft * 1000));
+                $rootScope.quizTimer = response.timeLeft;
+            });
+        }
 
         vm.nextQuiz = function() {
             if(vm.optionSeq != '') {
@@ -121,6 +125,11 @@
                 answerList = new Array();
             }
         }
+
+        $scope.$on('$destroy',function(){
+            clearTimeout(compInterval);
+        });
+
     }
 
     function paintQuestion(vm, quizList, pointer) {

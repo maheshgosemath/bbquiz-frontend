@@ -10,7 +10,7 @@
         // 3rd Party modules
         'ui.router'
     ])
-        .factory('HttpService',['$http', '$q', function ($http, $q) {
+        .factory('HttpService',['$http', '$q', 'UserInfoService', '$location', function ($http, $q, UserInfoService, $location) {
             var apiRoot = "/";
 
             var HttpService = function (apiModule) {
@@ -26,11 +26,19 @@
             }
 
             function makeRequestFailed(response) {
-                if(response.status == 401 || response.status == 302) {
-                    alert("Login failed or session expired. Please login again.")
+                if(response.status == 403) {
+                    //alert("Login failed or session expired. Please login again.");
+                    UserInfoService.deleteUserInfo();
+                    $location.path('home');
+                    return $q.reject("Error#" + response.status);
                 } else {
-                    var errMsg = "Some problem in server, try reloading the page. If the issue still persist contact admin.";
-                    return $q.reject("Error#" + response.status + ": " + errMsg);
+                    if(response.status == 401) {
+                        var errMsg = "Invalid login";
+                        return $q.reject("Error#" + response.status + ": " + errMsg);
+                    } else {
+                        var errMsg = "Some problem in server, try reloading the page. If the issue still persist contact admin.";
+                        return $q.reject("Error#" + response.status + ": " + errMsg);
+                    }
                 }
             }
 

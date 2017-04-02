@@ -55,8 +55,16 @@
         vm.gotoLogin = function () {
             $state.transitionTo('home');
         };
-        $rootScope.username = '';
-        $rootScope.quizTimer = 1;
+
+        var initTimer = setTimeout(function() {
+            clearTimeout(initTimer);
+            $rootScope.username='';
+            $rootScope.quizTimer=1;
+        }, 500);
+        vm.selected = false;
+        vm.tempGenreList = new Array();
+        vm.processing = false;
+        $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
         var httpObj = new HttpService("brainbout");
         httpObj.get("companylist").then(function(response) {
@@ -64,25 +72,31 @@
         });
 
         httpObj.get("genredetails").then(function(response) {
-            vm.genreList = response.genredetails.slice(0, -1); ;
+            vm.genreList = response.genredetails.slice(0, -1);
         });
 
         vm.handleSubmit = function() {
+            vm.processing = true;
             vm.success = -1;
-            console.log(vm.userData.interests);
+
+            vm.userData.genreSeq = vm.tempGenreList;
             var data = JSON.stringify(vm.userData);
             var httpObj = new HttpService("brainbout");
             httpObj.post("signup", data).then(function(response) {
                 scrollToMessage();
+                vm.processing = false;
                 if(response.status == 'success') {
-                    $scope.registrationForm.$setPristine();
-                    $scope.registrationForm.$setUntouched();
-                    vm.userData={};
+                    clearForm();
                     vm.success = 1;
                     vm.message = 'Registration successful. Please check your mail for verification link.';
                 } else {
                     vm.success = 0;
-                    vm.message = 'Something went wrong. Please try again.';
+                    if(response.status == 'error' && response.msg) {
+                        vm.message = response.msg;
+                    } else {
+                        vm.message = 'Something went wrong. Please try again.';
+                    }
+                    $scope.registrationForm.genre.$setViewValue(true);
                 }
             });
         };
@@ -95,8 +109,10 @@
             });
         }
 
-        vm.changeGenre = function() {
-            console.log(vm.userData.interests);
+        function clearForm() {
+            $scope.registrationForm.$setPristine();
+            $scope.registrationForm.$setUntouched();
+            vm.userData={};
         }
 
         function showMessage(msg) {
@@ -110,7 +126,24 @@
 
         function scrollToMessage() {
             var someElement = angular.element(document.getElementById('registration_header'));
-            $document.scrollToElement(someElement, 30, 2000);
+            $document.scrollToElement(someElement, 30, 1000);
+        }
+
+        vm.onGenreChange = function(value) {
+            var checked = false;
+            var idx = vm.tempGenreList.indexOf(value);
+            if(vm.tempGenreList.indexOf(value) > -1) {
+                vm.tempGenreList.splice(idx, 1);
+            } else {
+                vm.tempGenreList.push(value);
+            }
+            if(vm.tempGenreList.length == 2) {
+                vm.selected = true;
+                checked = true;
+            } else {
+                vm.selected = false;
+            }
+            $scope.registrationForm.genre.$setViewValue(checked);
         }
     }
 })();

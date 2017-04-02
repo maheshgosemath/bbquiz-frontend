@@ -6,8 +6,8 @@
             <md-card>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Edelweiss Brain Bout Quiz </span>
-                        <span class="md-subtitle">Season 2</span>
+                        <span class="md-headline">{{ vm.data.competitionTitle }}</span>
+                        <span class="md-subtitle">{{ vm.data.competitionSubTitle }}</span>
                     </md-card-title-text>
                 </md-card-title>
 
@@ -18,17 +18,7 @@
                 <md-card-content>
 
                     <div>
-                        It's that time of the year again! Edelweiss Brain Bout, the hottest, biggest, brainiest fun contest, is
-                        back with
-                        Season 2 so you can pit your wits against the best across Corporate India! To oil your mental
-                        machinery
-                        and get back your brain mojo, take these practice quizzes! You can get your score, view your
-                        performance
-                        on a leaderboard and up your score quiz after quiz! To begin with, answer these 10 questions.
-                        You have
-                        100 seconds. You can attempt this quiz only one. Your score, a function of time and performance,
-                        will
-                        appear on the leaderboard. Have fun!
+                        {{ vm.data.competitionText }}
                     </div>
 
                     <div layout="row" layout-align="center">

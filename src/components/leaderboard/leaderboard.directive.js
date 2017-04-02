@@ -33,23 +33,25 @@
         $rootScope.quizTimer = 1;
 
         var compObj = $cookies.get('compinfo');
-        var data = {
-            companySeq: compObj.companySeq,
-            competitionSeq: compObj.competitionSeq
-        };
-        var httpObj = new HttpService("brainbout");
-        httpObj.get("competitionleaderboard", data).then(function(response){
-            vm.leaderboard = response.leaderboard
-        });
+        if(compObj) {
+            var data = {
+                companySeq: compObj.companySeq,
+                competitionSeq: compObj.competitionSeq
+            };
+            var httpObj = new HttpService("brainbout");
+            httpObj.get("competitionleaderboard", data).then(function (response) {
+                vm.leaderboard = response.leaderboard
+            });
 
-        var userObj = $cookies.get('userinfo');
-        var data = {
-            userId: userObj.email,
-            companySeq: compObj.companySeq,
-            competitionSeq: compObj.competitionSeq
-        };
-        httpObj.get("competitionleaderboardlocation", data).then(function(response){
-            vm.locationleaderboard = response.leaderboard
-        });
+            var userObj = $cookies.get('userinfo');
+            var data = {
+                userId: userObj.email,
+                companySeq: compObj.companySeq,
+                competitionSeq: compObj.competitionSeq
+            };
+            httpObj.get("competitionleaderboardlocation", data).then(function (response) {
+                vm.locationleaderboard = response.leaderboard
+            });
+        }
     }
 })();

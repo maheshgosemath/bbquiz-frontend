@@ -6,15 +6,18 @@
         </div>
         <h2 flex md-truncate>BRAIN BOUT</h2>
 
-        <md-button aria-label="TimeLeft">
-            <span class="md-headline">
-                <timer ng-hide="vm.quizTimer==1" countdown="vm.quizTimer" max-time-unit="'hour'" interval="1000" autostart="false">{{hours}}:{{minutes}}:{{seconds}}</timer>
+        <div>
+            <md-button aria-label="TimeLeft">
+                <span class="md-headline">
+                    <timer ng-hide="vm.quizTimer==1" countdown="vm.quizTimer" max-time-unit="'hour'" interval="1000" autostart="false">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+                </span>
+            </md-button>
+            <span>
+                <!--<md-icon width="5" md-svg-src="images/account.svg" ng-hide="vm.username==''"></md-icon>-->
+                <span class="username">{{ vm.username }}</span>
+                <md-icon width="5" md-svg-src="images/logout.svg" ng-hide="vm.username==''"
+                         class="logout_btn" title="Logout" ng-click="vm.logout()"></md-icon>
             </span>
-        </md-button>
-
-        <md-button aria-label="User Name" >
-
-            <md-icon width="5" md-svg-src="images/account.svg" ng-hide="vm.username==''"></md-icon> <span>{{ vm.username }}</span>
-        </md-button>
+        </div>
     </div>
 </md-toolbar>

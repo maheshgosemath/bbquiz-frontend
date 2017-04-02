@@ -30,7 +30,7 @@ module.exports = function (config) {
         }
         var apiserver = proxyMiddleware('/brainbout', {
             //target: 'http://edufiler-uniquemedia.rhcloud.com/',
-            target: 'http://192.168.2.66:8080',
+            target: 'http://192.168.0.106:8080',
             changeOrigin: true,             // for vhosted sites, changes host header to match to target's host
             logLevel: 'debug'
         });

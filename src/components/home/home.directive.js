@@ -36,16 +36,19 @@
         $state.username='';
         var ref;
         vm.status == -1;
-        $rootScope.username = '';
-        $rootScope.quizTimer = 1;
+        vm.processing = false;
 
-        clearCookie();
+        var initTimer = setTimeout(function() {
+            clearTimeout(initTimer);
+            init();
+        }, 500);
 
         vm.gotoRegister = function(){
             $state.transitionTo('register');
         };
 
         function handleSubmit() {
+            vm.processing = true;
             var data = {
                 j_username: vm.email,
                 j_password: vm.password
@@ -64,16 +67,17 @@
                 if(response.status == 'VALID_EMAIL') {
                     httpObj.post("j_spring_security_check", data, config).then(function(jsonResp){
                         httpObj.get('userinfo').then(function(response) {
-                            if(jsonResp.userStatus == 'submitted') {
-                                $state.transitionTo("finalScreen");
-                            } else {
-                                putUserInfo(response);
-                                putCompInfo(response);
-                                $state.transitionTo("dashboard");
-                            }
+                            putUserInfo(response);
+                            putCompInfo(response);
+                            $state.transitionTo("dashboard");
                         });
+                    }, function(error) {
+                        vm.processing = false;
+                        vm.status = 1;
+                        vm.message = 'Invalid login details';
                     });
                 } else {
+                    vm.processing = false;
                     if(response.status == 'VERIFY_PENDING') {
                         vm.status = 1;
                         vm.message = 'Account not verified. Please verify account to login';
@@ -84,6 +88,10 @@
                         }
                     }
                 }
+            }, function(error) {
+                vm.processing = false;
+                vm.status = 1;
+                vm.message = 'Invalid login details';
             });
         };
 
@@ -107,6 +115,7 @@
                     } else {
                         if (jsonResp.timeLeft > 0) {
                             $state.transitionTo("introduction");
+
                         } else {
                             errorService.addError('Your quiz time is over', 'Error');
                             $state.transitionTo('error');
@@ -139,6 +148,11 @@
             $cookies.remove('submissionResult');
             $cookies.remove('useranswer');
             $cookies.remove('quizList');
+        }
+
+        function init() {
+            /*$rootScope.username='';
+            $rootScope.quizTimer=1;*/
         }
     }
 })();

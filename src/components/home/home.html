@@ -29,11 +29,10 @@
 
                             <div layout="row" layout-align="center">
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
-                                    ENTER
+                                    <md-icon width="5" md-svg-src="images/ring.svg" ng-show="vm.processing"></md-icon>
+                                    <span ng-show="!vm.processing">Enter</span>
                                 </md-button>
                             </div>
-
-
                         </form>
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="center center">

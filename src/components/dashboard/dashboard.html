@@ -44,7 +44,14 @@
                                             Submitted
                                         </div>
                                         <div ng-switch-when="PARTICIPATED">
-                                            {{ competition.userTimeLeft }} mins left
+                                            <span ng-switch on="competition.userTimeLeft">
+                                                <span ng-switch-when="competition.userTimeLeft > 0">
+                                                    {{ vm.Math.floor(competition.userTimeLeft/60) }} mins {{ competition.userTimeLeft%60 }} secs left
+                                                </span>
+                                                <span ng-switch-default>
+                                                    Time out
+                                                </span>
+                                            </span>
                                         </div>
                                         <div ng-switch-when="NP">
                                             Not participated
