@@ -7,10 +7,10 @@
 
 
     // ----- ControllerFunction -----
-    ControllerFunction.$inject = ['$state','$mdDialog','$cookieStore', '$rootScope', '$scope', 'HttpService'];
+    ControllerFunction.$inject = ['$state','$mdDialog','$cookieStore', '$rootScope', '$scope', 'HttpService', '$location'];
 
     /* @ngInject */
-    function ControllerFunction($state, $mdDialog, $cookieStore, $rootScope, $scope, HttpService) {
+    function ControllerFunction($state, $mdDialog, $cookieStore, $rootScope, $scope, HttpService, $location) {
 
         var vm = this;
         var userObj = $cookieStore.get('userinfo');
@@ -55,7 +55,10 @@
         });
 
         vm.show_dashbaord = function() {
-            $state.transitionTo('dashboard');
+            if($location.path() != '/' && $location.path() != 'register' &&
+                $location.path() != 'verify') {
+                $state.transitionTo('dashboard');
+            }
         };
 
         vm.logout = function() {

@@ -42,16 +42,20 @@
         }
 
         if(obj && userObj) {
-            var httpObj = new HttpService("brainbout");
-            var data = {
-                companySeq: obj.companySeq,
-                competitionSeq: obj.competitionSeq
+            if(!obj.competitionSeq) {
+                $state.transitionTo('dashboard');
+            } else {
+                var httpObj = new HttpService("brainbout");
+                var data = {
+                    companySeq: obj.companySeq,
+                    competitionSeq: obj.competitionSeq
+                }
+                httpObj.get("usercompetitiondetails", data).then(function (response) {
+                    vm.data = response.competitiondetails;
+                });
             }
-            httpObj.get("usercompetitiondetails", data).then(function(response) {
-                console.log(response);
-                vm.data = response.competitiondetails;
-            });
         }
+
         vm.startQuiz = function(){
             var httpObj = new HttpService("brainbout");
 

@@ -9,6 +9,8 @@
 md-toolbar.transbg{
     background: transparent;
 }
-.username{padding: 4px; font-size: 14px; font-weight: 600;font-family: 'Open Sans', sans-serif;}
+.username{padding: 4px; font-size: 16px; font-weight: 600;font-family: 'Open Sans', sans-serif;
+    max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: table-cell;}
 .logout_btn{cursor: pointer;}
 .logout_btn svg{fill: #D84B49;}
+.company_logo{cursor: pointer;}

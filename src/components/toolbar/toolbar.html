@@ -2,7 +2,7 @@
     <div class="md-toolbar-tools">
 
         <div class="img-container">
-            <img src="images/company-logo.png" ng-click="vm.show_dashbaord()"/>
+            <img src="images/company-logo.png" class="company_logo" ng-click="vm.show_dashbaord()"/>
         </div>
         <h2 flex md-truncate>BRAIN BOUT</h2>
 
@@ -14,8 +14,8 @@
             </md-button>
             <span>
                 <!--<md-icon width="5" md-svg-src="images/account.svg" ng-hide="vm.username==''"></md-icon>-->
-                <span class="username">{{ vm.username }}</span>
-                <md-icon width="5" md-svg-src="images/logout.svg" ng-hide="vm.username==''"
+                <span class="username" title="{{vm.username}}">{{ vm.username }}</span>
+                <md-icon width="5" md-svg-src="images/logout.svg" ng-hide="vm.username && vm.username==''"
                          class="logout_btn" title="Logout" ng-click="vm.logout()"></md-icon>
             </span>
         </div>

@@ -47,6 +47,10 @@
         }
 
         if(userObj && compObj) {
+            if(compObj.competitionSeq) {
+                compObj.competitionSeq = '';
+                $cookies.put('compinfo', compObj);
+            }
             var data = {
                 companySeq: compObj.companySeq,
                 email: userObj.email
