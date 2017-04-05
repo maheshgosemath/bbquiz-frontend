@@ -16,7 +16,8 @@
         'app.error',
         'app.dashboard',
         'app.leaderboard',
-        'app.verify'
+        'app.verify',
+        'ngCookies'
 
     ]).factory('userService', function() {
         var username;
@@ -46,5 +47,24 @@
             addError: addError,
             getError: getError
         }
-    });
+    }).factory('UserInfoService',['$cookieStore', '$rootScope', function($cookieStore, $rootScope) {
+
+            var UserInfoService = function (apiModule) {
+                this.apiModule = apiModule;
+            };
+
+            UserInfoService.deleteUserInfo = function() {
+                $cookieStore.remove('userinfo');
+                $cookieStore.remove('compinfo');
+                $cookieStore.remove('pointer');
+                $cookieStore.remove('submissionResult');
+                $cookieStore.remove('useranswer');
+                $cookieStore.remove('quizList');
+
+                $rootScope.username = '';
+                $rootScope.quizTimer = 1;
+            }
+        return UserInfoService;
+        }
+    ])
 })();

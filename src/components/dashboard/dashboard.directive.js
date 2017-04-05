@@ -26,33 +26,52 @@
         return directive;
     }
 
-    ControllerFunction.$inject = ['$state','HttpService', '$cookieStore'];
+    ControllerFunction.$inject = ['$state','HttpService', '$cookieStore', '$rootScope'];
 
     /* @ngInject */
-    function ControllerFunction($state, HttpService, $cookies) {
+    function ControllerFunction($state, HttpService, $cookies, $rootScope) {
         var vm = this;
         vm.loaded = false;
         clearCookies();
 
+        //$state.reload();
+        vm.Math = window.Math;
+        $rootScope.timerStatus = 'stop';
+        $rootScope.quizTimer = 1;
+
         var compObj = $cookies.get('compinfo');
         var userObj = $cookies.get('userinfo');
-        var data = {
-            companySeq: compObj.companySeq,
-            email: userObj.email
-        };
 
-        var httpObj = new HttpService("brainbout");
-        httpObj.post("dashboard", data).then(function(response){
-            vm.competitionList = response.dashboard;
-        });
-
-        data = {
-            companySeq: compObj.companySeq
+        if(!userObj) {
+            $state.transitionTo('home');
         }
-        httpObj.get("companyleaderboard", data).then(function(response){
-            vm.leaderboard = response.leaderboard
-            vm.loaded = true;
-        });
+
+        if(userObj && compObj) {
+            if(compObj.competitionSeq) {
+                compObj.competitionSeq = '';
+                $cookies.put('compinfo', compObj);
+            }
+            var data = {
+                companySeq: compObj.companySeq,
+                email: userObj.email
+            };
+
+            var httpObj = new HttpService("brainbout");
+            httpObj.post("dashboard", data).then(function (response) {
+                vm.competitionList = response.dashboard;
+                vm.currentCompetition_length = vm.competitionList.currentCompetitionList.length;
+                vm.upComingCompetition_length = vm.competitionList.upcomingCompetitionList.length;
+                vm.pastCompetition_length = vm.competitionList.pastCompetitionList.length;
+            });
+
+            data = {
+                companySeq: compObj.companySeq
+            }
+            httpObj.get("companyleaderboard", data).then(function (response) {
+                vm.leaderboard = response.leaderboard
+                vm.loaded = true;
+            });
+        }
 
         vm.show_score = function(competitionSeq) {
             addCompetitionDetails(competitionSeq);

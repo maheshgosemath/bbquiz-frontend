@@ -1,6 +1,6 @@
 .P8{padding:8px;}
 .P16{padding: 16px;}
-.competition_logo{max-height: 120px;width:100%;}
+.competition_logo{max-height: 120px;}
 .competition_title{border-top:1px solid #EFEFEF;}
 .competition_title span{font-size: 16px;}
 .action_btn{font-size: 16px;letter-spacing: 1px;text-transform: none;
@@ -13,7 +13,7 @@
 .event_timer, .event_participant md-icon{margin-bottom: 4px;}
 .time_left{padding: 4px 0px;}
 .event_participated svg{fill: green;}
-.headline_text{float: left;}
+.headline_text{float: left;max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .event_participated{float: right;}
 .event_participant md-icon{margin-bottom: 2px;}
 .FL{float:left;}
@@ -25,8 +25,11 @@
 .leader_card table td{padding: 8px; font-family: 'Open Sans', sans-serif;}
 .event_card{margin: 16px;}
 .full_layout{width:100%;}
-.competition_header{min-height: 0px !important;max-height: 40px;font-size: 16px !important;}
+.competition_header{min-height: 0px !important;max-height: 40px;font-size: 16px !important;
+    background-color: transparent !important; color: rgb(76,76,76) !important; margin: 8px 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);}
 .competition_header_text{font-size: 16px; font-family: 'Open Sans', sans-serif;}
 .event_status{font-family: 'Open Sans', sans-serif;font-size: 15px;}
-.event_status_count{padding: 0px 8px 2px;background-color: #e24949;color: #e1e1e1;border-radius: 4px;font-size: 13px;}
-
+.event_status_count{padding: 0px 8px 2px;background-color: #d0cece;color: #757575;border-radius: 4px;font-size: 13px;}
+.md-active .event_status_count{background-color: #e24949;color: #e1e1e1;}
+.competition_banner{margin: auto;}

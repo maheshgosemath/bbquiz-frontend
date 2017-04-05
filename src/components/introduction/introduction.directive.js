@@ -33,11 +33,35 @@
     function ControllerFunction($state, HttpService, $cookieStore) {
 
         var vm = this;
+
+        var obj = $cookieStore.get('compinfo');
+        var userObj = $cookieStore.get('userinfo');
+
+        if(!userObj) {
+            $state.transitionTo('home');
+        }
+
+        if(obj && userObj) {
+            if(!obj.competitionSeq) {
+                $state.transitionTo('dashboard');
+            } else {
+                var httpObj = new HttpService("brainbout");
+                var data = {
+                    companySeq: obj.companySeq,
+                    competitionSeq: obj.competitionSeq
+                }
+                httpObj.get("usercompetitiondetails", data).then(function (response) {
+                    vm.data = response.competitiondetails;
+                });
+            }
+        }
+
         vm.startQuiz = function(){
             var httpObj = new HttpService("brainbout");
 
             var obj = $cookieStore.get('compinfo');
             var userObj = $cookieStore.get('userinfo');
+
             var data = {
                 email: userObj.email,
                 competitionSeq: obj.competitionSeq

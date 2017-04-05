@@ -28,12 +28,22 @@
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>First name</label>
-                                    <input ng-model="vm.userData.userVO.firstName" required name="firstName">
+                                    <input ng-model="vm.userData.userVO.firstName" ng-required="true" name="firstName" ng-maxlength="50">
+                                    <div ng-messages="registrationForm.firstName.$error" ng-messages-multiple>
+                                        <div ng-message="required">First name is required</div>
+                                        <div ng-message="maxlength">Maximum 50 characters allowed
+                                        </div>
+                                    </div>
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>Last name</label>
-                                    <input ng-model="vm.userData.userVO.lastName" ng-required="true" name="lastName">
+                                    <input ng-model="vm.userData.userVO.lastName" ng-required="true" name="lastName" ng-maxlength="50">
+                                    <div ng-messages="registrationForm.lastName.$error" ng-messages-multiple>
+                                        <div ng-message="required">Last name is required</div>
+                                        <div ng-message="maxlength">Maximum 50 characters allowed
+                                        </div>
+                                    </div>
                                 </md-input-container>
                             </div>
 
@@ -41,16 +51,19 @@
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>Company</label>
                                     <md-select ng-model="vm.userData.companySeq" ng-required="true" name="company"
-                                               ng-change="vm.changeCompany()">
+                                               ng-change="vm.changeCompany()" ng-required="true">
                                         <md-option ng-value="company.corporateSeq"
                                                    ng-repeat="company in vm.companyList">
                                             <em>{{ company.corporateName }}</em>
                                         </md-option>
                                     </md-select>
+                                    <div ng-messages="registrationForm.company.$error">
+                                        <div ng-message="required">Please select a company</div>
+                                    </div>
                                 </md-input-container>
-                                <md-input-container class="md-block" ng-hide="vm.userData.companySeq == ''" flex-gt-sm>
+                                <md-input-container class="md-block" flex-gt-sm>
                                     <label>Location</label>
-                                    <md-select ng-model="vm.userData.locationSeq" ng-required="true" name="location">
+                                    <md-select ng-model="vm.userData.locationSeq" ng-required="true" name="location" ng-disabled="!registrationForm.company.$dirty">
                                         <md-option ng-value="location.seq" ng-repeat="location in vm.locationList">
                                             <em>{{ location.name }}</em>
                                         </md-option>
@@ -58,12 +71,14 @@
                                 </md-input-container>
                             </div>
 
-
-
                             <div>
                                 <md-input-container class="md-block">
                                     <input ng-model="vm.userData.userVO.email" type="email" placeholder="Email"
-                                           ng-required="true" name="email">
+                                           ng-required="true" name="email" ng-pattern="emailFormat">
+                                    <div ng-messages="registrationForm.email.$error" ng-messages-multiple>
+                                        <div ng-message="required">Email is required</div>
+                                        <div ng-message="pattern">Invalid email</div>
+                                    </div>
                                 </md-input-container>
                             </div>
 
@@ -72,6 +87,9 @@
                                 <md-input-container class="md-block">
                                     <input ng-model="vm.userData.userVO.phoneNo" type="text" placeholder="Phone Number"
                                            name="phoneNo">
+                                    <div ng-messages="registrationForm.email.$error" ng-messages-multiple>
+                                        <div ng-message="pattern">Invalid email</div>
+                                    </div>
                                 </md-input-container>
                             </div>
 
@@ -79,12 +97,10 @@
                                 <md-input-container class="md-block">
                                     <input ng-model="vm.userData.password" type="password" placeholder="Password"
                                            required
-                                           name="password"
-                                           ng-pattern="/^[a-zA-Z0-9]{8}$/">
+                                           name="password" ng-minlength="8">
                                     <div ng-messages="registrationForm.password.$error" ng-messages-multiple>
                                         <div ng-message="required">This is required</div>
-                                        <div ng-message="pattern">Password must be alphanumeric and atleast 8 characters
-                                        </div>
+                                        <div ng-message="minlength">Password must be atleast 8 characters long</div>
                                     </div>
                                 </md-input-container>
 
@@ -100,23 +116,31 @@
                                 </md-input-container>
                             </div>
 
-                            <div layout="row">
+
+                            <div>
                                 <md-input-container class="md-block" flex="100">
-                                    <label>Your interests</label>
-                                    <md-select ng-model="vm.userData.genreSeq" ng-required="true" name="genre"
-                                               multiple="{{false}}" ng-change="vm.changeGenre()">
-                                        <md-option ng-value="genre.seq" ng-repeat="genre in vm.genreList">
-                                            <em>{{ genre.name }}</em>
-                                        </md-option>
-                                    </md-select>
+                                    <label>Your interests (Select any 2)</label>
+                                    <md-divider></md-divider>
+                                    <md-checkbox ng-show="false" name="genre" ng-model="vm.userData.genreSeq"
+                                                 ng-required="true" aria-label="disabled"></md-checkbox>
+                                    <md-list-item ng-repeat="genre in vm.genreList">
+                                        <md-checkbox ng-click="vm.onGenreChange(genre.seq)"
+                                                     ng-value="genre.seq"
+                                                     ng-disabled="(vm.selected && !(vm.tempGenreList.indexOf(genre.seq) > -1))"
+                                                     aria-label="genre.name">
+                                        </md-checkbox>
+                                        {{ genre.name }}
+                                    </md-list-item>
+                                    <div ng-messages="registrationForm.genre.$error" ng-if="registrationForm.genre.$dirty">
+                                        <div ng-message="required">Select 2 interests</div>
+                                    </div>
                                 </md-input-container>
-
                             </div>
-
 
                             <div layout="row" layout-align="center">
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
-                                    REGISTER
+                                    <md-icon width="5" md-svg-src="images/ring.svg" ng-show="vm.processing"></md-icon>
+                                    <span ng-show="!vm.processing">Register</span>
                                 </md-button>
                             </div>
 
