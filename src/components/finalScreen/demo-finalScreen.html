@@ -1,0 +1,54 @@
+<div layout="row" layout-align="center">
+    <div flex-xs flex-gt-xs="60" layout="column">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="md-display-1" layout="row" layout-align="center">
+                        {{ vm.name }}
+                    </div>
+                    <div class="md-subheader" layout="row" layout-align="center">
+                        <h3>YOU SCORED</h3>
+                    </div>
+                    <div class="md-display-3" layout="row" layout-align="center">
+                        {{ vm.demoScore }}
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+
+
+            <md-card-content layout="row" layout-align="center">
+                <div>
+                    <md-content class="md-padding _md layout-xs-column layout-column" layout-xs="column"
+                                layout="column">
+                        <md-list ng-cloak="" ng-if="vm.demoOptionList.length > 0">
+                            <span class="md-subheader" layout="row" layout-align="center"></span>
+                            <md-subheader class="md-no-sticky"><b>YOUR RESPONSES</b></md-subheader>
+                            <div ng-repeat="ques in vm.demoOptionList">
+                                <small>
+                                    <md-icon ng-if="ques.isCorrect == 'Y'"
+                                             md-svg-src="../../images/check.svg"></md-icon>
+                                    <md-icon ng-if="ques.isCorrect == 'N'" md-svg-src="../../images/close.svg"
+                                             class="md-default-theme"></md-icon>
+                                    {{ques.quizTitle }}
+                                </small>
+                            </div>
+                        </md-list>
+                    </md-content>
+                    <div layout="row" layout-align="center">
+                        <h3>Well Done! Now you are ready for the real battle.</h3>
+                    </div>
+
+                    <div layout="row" layout-align="center">
+                        <md-button ng-click="vm.goToHome()" class="md-raised md-accent"
+                                   aria-label="Use Android">
+                            Let's Start
+                        </md-button>
+                    </div>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="center">
+
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

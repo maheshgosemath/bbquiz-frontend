@@ -9,9 +9,13 @@
         <div>
             <md-button aria-label="TimeLeft">
                 <span class="md-headline">
-                    <timer ng-hide="vm.quizTimer==1" countdown="vm.quizTimer" max-time-unit="'hour'" interval="1000" autostart="false">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+                    <timer ng-hide="vm.quizTimer==1" countdown="vm.quizTimer" max-time-unit="'hour'" interval="1000"
+                           autostart="false">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
                 </span>
             </md-button>
+            <button ng-show="vm.isDashboard" type="button" ng-click="vm.enter_quiz_demo()"
+                    class="btn-primary btn-raised warm-button">
+                Warm-up Quiz</button>
             <span>
                 <!--<md-icon width="5" md-svg-src="images/account.svg" ng-hide="vm.username==''"></md-icon>-->
                 <span class="username" title="{{vm.username}}">{{ vm.username }}</span>

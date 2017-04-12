@@ -9,14 +9,9 @@
 
                         <img src="../../images/competition_logo.png" flex="30" layout="column"
                              alt="Washed Out"/>
-
-
                     <md-card-content>
-
                         <div layout-align="center" ng-show="vm.status == 1" class="warn_message">{{ vm.message }}</div>
                         <form data-ng-submit="vm.handleSubmit()" id="login_form">
-
-
                             <md-input-container class="md-block">
                                 <label>COMPANY EMAIL ADDRESS</label>
                                 <input ng-model="vm.email" type="email" required name="j_username"/>
@@ -26,7 +21,6 @@
                                 <label>PASSWORD</label>
                                 <input ng-model="vm.password" type="password" required name="j_password">
                             </md-input-container>
-
                             <div layout="row" layout-align="center">
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
                                     <md-icon width="5" md-svg-src="images/ring.svg" ng-show="vm.processing"></md-icon>
@@ -45,7 +39,6 @@
                 </md-card>
             </div>
         </div>
-
     </div>
 </div>
 

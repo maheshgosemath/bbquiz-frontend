@@ -29,8 +29,8 @@ module.exports = function (config) {
             watch(files, function() { gulp.start('optimize', browserSync.reload); });
         }
         var apiserver = proxyMiddleware('/brainbout', {
-            //target: 'http://edufiler-uniquemedia.rhcloud.com/',
-            target: 'http://192.168.0.106:8080',
+            target: 'http://webquiz.brainbout.in/',
+            //target: 'http://192.168.0.106:8080',
             changeOrigin: true,             // for vhosted sites, changes host header to match to target's host
             logLevel: 'debug'
         });

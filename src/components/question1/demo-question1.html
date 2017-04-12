@@ -8,14 +8,11 @@
             </div>
             <md-card-title class="md-accent" layout="row" layout-xs="column" layout-align="end">
                 <span class="md-headline" flex class="md-accent">{{vm.question}}</span>
-                <md-content layout="column" class="quiz_image">
-                    <img ng-if="vm.quizImg && vm.fileType(vm.quizImg) == 'I'" src="/brainbout/quizimages/{{vm.quizImg}}"/>
-                    <audio ng-if="vm.quizImg && vm.fileType(vm.quizImg) == 'A'" controls>
-                        <source src="/brainbout/quizimages/{{vm.quizImg}}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </md-content>
             </md-card-title>
+            <md-content layout="column" class="quiz_image">
+                <img ng-if="vm.quizImg" src="/brainbout/quizimages/{{vm.quizImg}}"/>
+            </md-content>
+
             <md-content class="md-padding _md layout-xs-column layout-column half-transbg" layout-xs="column" layout="column" >
                 <md-subheader class="md-no-sticky">Please select one answer</md-subheader>
                 <md-list ng-cloak="">

@@ -157,10 +157,10 @@
                             <md-card-actions layout="column" layout-align="start" class="action_group">
                                 <div class="FL" ng-switch on="competition.userStatus">
                                     <div ng-switch-when="submitted">
-                                        <md-button class="action_btn" ng-click="vm.show_score(competition.competitionVO.competitionSeq)">My score</md-button>
+                                        <md-button class="" ng-click="vm.show_score(competition.competitionVO.competitionSeq)">My score</md-button>
                                     </div>
                                 </div>
-                                <md-button class="action_btn" ng-click="vm.show_leaderboard(competition.competitionVO.competitionSeq)">Leaderboard</md-button>
+                                <md-button class="" ng-click="vm.show_leaderboard(competition.competitionVO.competitionSeq)">Leaderboard</md-button>
                             </md-card-actions>
                         </md-card>
                     </div>
@@ -169,6 +169,7 @@
     </md-tabs>
     </div>
     <div flex-gt-sm="30" class="md-padding">
+
         <md-toolbar class="competition_header">
             <div class="md-toolbar-tools">
                 <span class="md-flex competition_header_text">Leaderboard</span>

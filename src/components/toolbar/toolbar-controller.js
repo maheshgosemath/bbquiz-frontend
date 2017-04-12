@@ -18,6 +18,10 @@
         if (userObj) {
             vm.username = userObj.name;
         }
+        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            // Check if current user has group access
+            vm.isDashboard = toState.name == 'dashboard';
+        });
 
         $rootScope.$watch("username", function(newValue, oldValue) {
             if(oldValue != newValue && newValue != '') {
@@ -44,6 +48,7 @@
                 }
             }
         });
+
         $rootScope.$watch("timerStatus", function(newValue, oldValue) {
             if(oldValue !== newValue && newValue) {
                 if(newValue == 'stop') {
@@ -81,6 +86,10 @@
             $cookieStore.remove('submissionResult');
             $cookieStore.remove('useranswer');
             $cookieStore.remove('quizList');
+        }
+
+        vm.enter_quiz_demo = function () {
+            $state.transitionTo('introductionDemo');
         }
     }
 

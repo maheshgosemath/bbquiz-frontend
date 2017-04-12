@@ -1,4 +1,3 @@
-
 (function () {
 
     'use strict';
@@ -26,7 +25,7 @@
         return directive;
     }
 
-    ControllerFunction.$inject = ['$state','HttpService', '$cookieStore', '$rootScope'];
+    ControllerFunction.$inject = ['$state', 'HttpService', '$cookieStore', '$rootScope'];
 
     /* @ngInject */
     function ControllerFunction($state, HttpService, $cookies, $rootScope) {
@@ -42,12 +41,12 @@
         var compObj = $cookies.get('compinfo');
         var userObj = $cookies.get('userinfo');
 
-        if(!userObj) {
+        if (!userObj) {
             $state.transitionTo('home');
         }
 
-        if(userObj && compObj) {
-            if(compObj.competitionSeq) {
+        if (userObj && compObj) {
+            if (compObj.competitionSeq) {
                 compObj.competitionSeq = '';
                 $cookies.put('compinfo', compObj);
             }
@@ -73,21 +72,21 @@
             });
         }
 
-        vm.show_score = function(competitionSeq) {
+        vm.show_score = function (competitionSeq) {
             addCompetitionDetails(competitionSeq);
             $state.transitionTo('finalScreen');
         }
 
-        vm.enter_quiz = function(competitionSeq, userStatus) {
+        vm.enter_quiz = function (competitionSeq, userStatus) {
             addCompetitionDetails(competitionSeq);
-            if(userStatus === 'NP') {
+            if (userStatus === 'NP') {
                 $state.transitionTo('introduction');
             } else {
                 $state.transitionTo('question1');
             }
         }
 
-        vm.show_leaderboard = function(competitionSeq) {
+        vm.show_leaderboard = function (competitionSeq) {
             addCompetitionDetails(competitionSeq);
             $state.transitionTo('leaderboard');
         }
@@ -104,5 +103,6 @@
             $cookies.remove('useranswer');
             $cookies.remove('quizList');
         }
+
     }
 })();
