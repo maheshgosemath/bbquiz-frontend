@@ -33,9 +33,20 @@
                 module: 'private'
             })
 
+            .state('introductionDemo', {
+                url: '/introductionDemo',
+                template: '<demo-introduction></demo-introduction>',
+                module: 'private'
+            })
+
             .state('question1', {
                 url: '/question1',
                 template: '<tmpl-question1></tmpl-question1>',
+                module: 'private'
+            })
+            .state('question1Demo', {
+                url: '/question1Demo',
+                template: '<demo-question1></demo-question1>',
                 module: 'private'
             })
 
@@ -48,6 +59,11 @@
             .state('finalScreen', {
                 url: '/finalScreen',
                 template: '<tmpl-final-screen></tmpl-final-screen>',
+                module: 'private'
+            })
+            .state('finalScreenDemo', {
+                url: '/finalScreenDemo',
+                template: '<demo-final-screen></demo-final-screen>',
                 module: 'private'
             })
 
