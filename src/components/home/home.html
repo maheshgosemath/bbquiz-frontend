@@ -3,11 +3,11 @@
     <div class="form-content">
 
         <div layout="row" layout-align="center">
-            <div flex-xs flex-gt-xs="35" layout="column">
+            <div flex-xs flex-gt-xs="35" layout="column" class="flexobj placecenter">
 
                 <md-card>
 
-                        <img src="../../images/competition_logo.png" flex="30" layout="column"
+                        <img src="../../images/competition_logo.png" flex="30" layout="column" class="flexobj"
                              alt="Washed Out"/>
                     <md-card-content>
                         <div layout-align="center" ng-show="vm.status == 1" class="warn_message">{{ vm.message }}</div>
@@ -21,7 +21,7 @@
                                 <label>PASSWORD</label>
                                 <input ng-model="vm.password" type="password" required name="j_password">
                             </md-input-container>
-                            <div layout="row" layout-align="center">
+                            <div layout="row" layout-align="center" >
                                 <md-button type="submit" class="md-raised md-primary bigfab" aria-label="Use Android">
                                     <md-icon width="5" md-svg-src="images/ring.svg" ng-show="vm.processing"></md-icon>
                                     <span ng-show="!vm.processing">Enter</span>
