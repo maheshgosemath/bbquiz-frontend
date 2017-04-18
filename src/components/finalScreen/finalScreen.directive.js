@@ -46,6 +46,8 @@
 
         vm.goToHome = function () {
             $state.transitionTo('dashboard');
+            $cookieStore.remove('demoOptionList');
+            $cookieStore.remove('demoScore');
         };
 
         vm.catchScore = $cookieStore.get('demoScore');

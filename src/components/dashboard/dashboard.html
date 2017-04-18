@@ -65,8 +65,8 @@
                                     <div ng-switch-when="submitted">
                                         <md-button class="action_btn" ng-click="vm.show_score(competition.competitionVO.competitionSeq)">My score</md-button>
                                     </div>
-                                    <div ng-switch-default>
-                                        <md-button class="action_btn" ng-click="vm.enter_quiz(competition.competitionVO.competitionSeq, competition.userStatus)">Enter</md-button>
+                                    <div ng-switch-default class="enter_action_btn">
+                                        <md-button class="action_btn btn-border" ng-click="vm.enter_quiz(competition.competitionVO.competitionSeq, competition.userStatus)">Enter</md-button>
                                     </div>
                                 </div>
                                 <md-button class="action_btn" ng-click="vm.show_leaderboard(competition.competitionVO.competitionSeq)">Leaderboard</md-button>
