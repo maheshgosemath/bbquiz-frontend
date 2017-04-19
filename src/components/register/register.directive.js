@@ -64,7 +64,7 @@
         vm.selected = false;
         vm.tempGenreList = new Array();
         vm.processing = false;
-        $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+        $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z0-9]+\.[a-z.]{2,5}$/;
 
         var httpObj = new HttpService("brainbout");
         httpObj.get("companylist").then(function(response) {
