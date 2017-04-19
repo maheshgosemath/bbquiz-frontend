@@ -167,35 +167,6 @@
                 ]
             },
             {
-                genre: "Music",
-                quizImg: "",
-                quizSeq: 23,
-                quizTitle: "How many performers PAN india will be eligible to participate for Edelweiss Brain Bout Season 2",
-                optionList: [
-                    {
-                        isCorrect: "",
-                        optionSeq: 177,
-                        optionTitle: "15"
-                    },
-                    {
-                        isCorrect: "",
-                        optionSeq: 178,
-                        optionTitle: "10"
-                    },
-                    {
-                        isCorrect: "Y",
-                        optionSeq: 179,
-                        optionTitle: "16"
-                    },
-                    {
-                        isCorrect: "",
-                        optionSeq: 180,
-                        optionTitle: "20"
-                    }
-                ]
-
-            },
-            {
                 genre: "Entertainment",
                 quizImg: "",
                 quizSeq: 43,
@@ -249,19 +220,11 @@
                 isCorrect: ""
             },
             {
-                quizSeq: 23,
-                quizTitle: "How many performers PAN india will be eligible to participate for Edelweiss Brain Bout Season 2",
-                isCorrect: ""
-            },
-            {
                 quizSeq: 43,
                 quizTitle: "What will happen if I logout during the quiz?",
                 isCorrect: ""
             }
         ];
-
-        $cookieStore.put('demoQuestions', quizList);
-
         var pointer = 0;
         var demoScore = 0;
         vm.buttonLabel = "NEXT";

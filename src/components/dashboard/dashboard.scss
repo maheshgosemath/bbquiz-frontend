@@ -1,42 +1,169 @@
-.P8{padding:8px;}
-.P16{padding: 16px;}
-.competition_logo{max-height: 120px;}
-.competition_title{border-top:1px solid #EFEFEF;}
-.competition_title span{font-size: 16px;}
-.action_btn{font-size: 16px;letter-spacing: 1px;text-transform: none;
-    margin:0px !important;
-    width:100%;}
-.action_group{margin: 0 !important;background-color: rgb(16,108,200);color: #ffffff}
-.action_group .action_btn:first-child{border-bottom: 1px solid #3e3ee2;}
-.event_timer svg{width: 80%;fill: #008000;}
-.event_participant svg{width:80%;fill: #5e5ee8;}
-.event_timer, .event_participant md-icon{margin-bottom: 4px;}
-.time_left{padding: 4px 0px;}
-.event_participated svg{fill: green;}
-.headline_text{float: left;max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-.event_participated{float: right;}
-.event_participant md-icon{margin-bottom: 2px;}
-.FL{float:left;}
-.leader_card{padding: 0;/*margin: 0;*/width: 100%;}
-.leader_card_content{padding:4px;}
-.leader_card tbody {font-size: 13px;text-align: center;}
-.leader_card table{width: 100% !important;
-    border-spacing:0;}
-.leader_card md-column{text-align: center;padding: 8px;}
-.leader_card table td{padding: 4px; font-family: 'Open Sans', sans-serif; }
+.P8 {
+    padding: 8px;
+}
+
+.P16 {
+    padding: 16px;
+}
+
+.competition_logo {
+    max-height: 120px;
+}
+
+.competition_title {
+    border-top: 1px solid #EFEFEF;
+}
+
+.competition_title span {
+    font-size: 16px;
+}
+
+.action_btn {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: none;
+    margin: 0px !important;
+    width: 100%;
+}
+
+.action_group {
+    margin: 0 !important;
+    background-color: rgb(16, 108, 200);
+    color: #ffffff
+}
+
+.action_group .action_btn:first-child {
+    border-bottom: 1px solid #3e3ee2;
+
+}
+
+.enter_action_btn {
+    background-color: rgb(255, 82, 82);
+    .btn-border{
+        border-bottom: 1px solid #ff5252!important;
+    }
+}
+
+.event_timer svg {
+    width: 80%;
+    fill: #008000;
+}
+
+.event_participant svg {
+    width: 80%;
+    fill: #5e5ee8;
+}
+
+.event_timer, .event_participant md-icon {
+    margin-bottom: 4px;
+}
+
+.time_left {
+    padding: 4px 0px;
+}
+
+.event_participated svg {
+    fill: green;
+}
+
+.headline_text {
+    float: left;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.event_participated {
+    float: right;
+}
+
+.event_participant md-icon {
+    margin-bottom: 2px;
+}
+
+.FL {
+    float: left;
+}
+
+.leader_card {
+    padding: 0; /*margin: 0;*/
+    width: 100%;
+}
+
+.leader_card_content {
+    padding: 4px;
+}
+
+.leader_card tbody {
+    font-size: 13px;
+    text-align: center;
+}
+
+.leader_card table {
+    width: 100% !important;
+    border-spacing: 0;
+}
+
+.leader_card md-column {
+    text-align: center;
+    padding: 8px;
+}
+
+.leader_card table td {
+    padding: 4px;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .leader_card table tr:nth-child(even) {
     background-color: #ecf9ff;
 }
-.leader_card table th{
+
+.leader_card table th {
     font-size: 13px;
 }
-.event_card{margin: 16px;}
-.full_layout{width:100%;}
-.competition_header{min-height: 0px !important;max-height: 40px;font-size: 16px !important;
-    background-color: transparent !important; color: rgb(76,76,76) !important; margin: 8px 0px;
-    border-bottom: 1px solid rgba(0,0,0,0.12);}
-.competition_header_text{font-size: 16px; font-family: 'Open Sans', sans-serif;}
-.event_status{font-family: 'Open Sans', sans-serif;font-size: 15px;}
-.event_status_count{padding: 0px 8px 2px;background-color: #d0cece;color: #757575;border-radius: 4px;font-size: 13px;}
-.md-active .event_status_count{background-color: #e24949;color: #e1e1e1;}
-.competition_banner{margin: auto;}
+
+.event_card {
+    margin: 16px;
+}
+
+.full_layout {
+    width: 100%;
+}
+
+.competition_header {
+    min-height: 0px !important;
+    max-height: 40px;
+    font-size: 16px !important;
+    background-color: transparent !important;
+    color: rgb(76, 76, 76) !important;
+    margin: 8px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.competition_header_text {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.event_status {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+
+.event_status_count {
+    padding: 0px 8px 2px;
+    background-color: #d0cece;
+    color: #757575;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.md-active .event_status_count {
+    background-color: #e24949;
+    color: #e1e1e1;
+}
+
+.competition_banner {
+    margin: auto;
+}

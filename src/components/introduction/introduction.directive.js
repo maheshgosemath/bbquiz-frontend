@@ -49,7 +49,7 @@
             $state.transitionTo('question1Demo');
         };
         vm.data = {
-            competitionTitle:"Edelweiss Brain Bout Inter-Corporate Quiz",
+            competitionTitle:"Edelweiss Brain Bout Web Quiz",
             competitionSubTitle:"Season 2"
         }
     }
