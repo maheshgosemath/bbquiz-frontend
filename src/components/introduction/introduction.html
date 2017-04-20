@@ -12,17 +12,24 @@
                 </md-card-title>
 
 
-                    <img src="../../images/intro.jpg"
-                         alt="Washed Out"/>
+                <img src="../../images/intro.jpg"
+                     alt="Washed Out"/>
 
                 <md-card-content>
 
-                    <div>
-                        {{ vm.data.competitionText }}
-                    </div>
+                    <div ng-bind-html="vm.data.competitionText">
 
+                    </div>
+                    <br>
                     <div layout="row" layout-align="center">
-                        <md-button ng-click="vm.startQuiz()" class="md-raised md-primary bigfab" aria-label="Use Android">
+                        <div>
+                        <div class="md-title" layout="row" layout-align="center">Important Point!</div>
+                            <div>Please take the <a href="/introductionDemo" class="md-button md-primary">warm up quiz</a> before you start</div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="center">
+                        <md-button ng-click="vm.startQuiz()" class="md-raised md-primary bigfab"
+                                   aria-label="Use Android">
                             START
                         </md-button>
                     </div>
