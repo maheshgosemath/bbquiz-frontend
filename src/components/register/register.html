@@ -86,10 +86,11 @@
 
                             <div>
                                 <md-input-container class="md-block">
-                                    <input ng-model="vm.userData.userVO.phoneNo" type="text" placeholder="Phone Number"
-                                           name="phoneNo">
-                                    <div ng-messages="registrationForm.email.$error" ng-messages-multiple>
-                                        <div ng-message="pattern">Invalid email</div>
+                                    <input ng-model="vm.userData.userVO.phoneNo" type="text" placeholder="Mobile Number"
+                                           ng-required="true" name="phoneNo" maxlength="10" minlength="10" ng-pattern="mobileFormat">
+                                    <div ng-messages="registrationForm.phoneNo.$error" ng-messages-multiple>
+                                        <div ng-message="required">Mobile number is required</div>
+                                        <div ng-message="pattern">Valid 10 digit mobile number required</div>
                                     </div>
                                 </md-input-container>
                             </div>
